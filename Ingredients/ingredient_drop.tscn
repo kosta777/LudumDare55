@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://41v1kmyutoyh"]
+
+[ext_resource type="Script" path="res://Ingredients/ingredient_drop.gd" id="1_b0hgx"]
+[ext_resource type="Texture2D" uid="uid://ddwbla6ohhcnh" path="res://sprites/Demons/red_demon.png" id="2_xu6so"]
+
+[node name="Ingredient" type="Node2D"]
+script = ExtResource("1_b0hgx")
+
+[node name="icon" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xu6so")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="name" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_right = 39.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
