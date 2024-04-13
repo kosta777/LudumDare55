@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctqe760l6nkwk"]
+[gd_scene load_steps=13 format=3 uid="uid://ctqe760l6nkwk"]
 
 [ext_resource type="Script" path="res://src/portal.gd" id="1_jaqdm"]
 [ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal_spawn.png" id="2_7axae"]
@@ -60,6 +60,11 @@ height = 50.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncugg"]
 height = 50.0
 
+[sub_resource type="Curve" id="Curve_iyl0l"]
+min_value = -1.0
+_data = [Vector2(0, 0.00535953), 0.0, 0.0, 0, 0, Vector2(0.443344, 0.317686), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Portal" type="Node2D"]
 modulate = Color(0.619608, 0.619608, 0.619608, 1)
 script = ExtResource("1_jaqdm")
@@ -84,12 +89,12 @@ collision_layer = 0
 shape = SubResource("CapsuleShape2D_5lxem")
 debug_color = Color(0.933333, 0.262745, 0, 0.419608)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="PhysicalCollision" type="StaticBody2D" parent="."]
 disable_mode = 1
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalCollision"]
 shape = SubResource("CapsuleShape2D_ncugg")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -104,6 +109,30 @@ show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.62
+one_shot = true
+speed_scale = 1.4
+explosiveness = 0.45
+randomness = 0.24
+emission_shape = 1
+emission_sphere_radius = 5.88
+spread = 28.26
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 33.83
+initial_velocity_max = 67.66
+angular_velocity_min = -155.26
+angular_velocity_max = 161.35
+damping_min = 9.302
+damping_max = 16.067
+scale_amount_max = 1.6
+color = Color(0.207843, 0.858824, 0.270588, 1)
+hue_variation_min = -0.34
+hue_variation_max = 0.36
+hue_variation_curve = SubResource("Curve_iyl0l")
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
