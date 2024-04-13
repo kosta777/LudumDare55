@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctqe760l6nkwk"]
+
+[ext_resource type="Script" path="res://src/portal.gd" id="1_jaqdm"]
+[ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal_spawn.png" id="2_7axae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl5w6"]
+atlas = ExtResource("2_7axae")
+region = Rect2(8, 0, 18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eip7q"]
+atlas = ExtResource("2_7axae")
+region = Rect2(40, 0, 18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62aga"]
+atlas = ExtResource("2_7axae")
+region = Rect2(72, 0, 18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5tvg"]
+atlas = ExtResource("2_7axae")
+region = Rect2(8, 32, 18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbln8"]
+atlas = ExtResource("2_7axae")
+region = Rect2(40, 32, 18, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqbca"]
+atlas = ExtResource("2_7axae")
+region = Rect2(72, 32, 18, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfllg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl5w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eip7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62aga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5tvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbln8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqbca")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lxem"]
+radius = 18.0
+height = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncugg"]
+height = 50.0
+
+[node name="Portal" type="Node2D"]
+modulate = Color(0.619608, 0.619608, 0.619608, 1)
+script = ExtResource("1_jaqdm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(1.55, 1.55)
+sprite_frames = SubResource("SpriteFrames_rfllg")
+frame_progress = 0.435688
+
+[node name="StateLabel" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_top = -5.0
+offset_right = 52.0
+offset_bottom = 35.0
+theme_override_font_sizes/normal_font_size = 9
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CapsuleShape2D_5lxem")
+debug_color = Color(0.933333, 0.262745, 0, 0.419608)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_ncugg")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.745098, 0.219608, 0.227451, 1)
+offset_left = -31.0
+offset_top = -33.0
+offset_right = 32.0
+offset_bottom = -6.0
+scale = Vector2(1, 0.3)
+step = 0.1
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
