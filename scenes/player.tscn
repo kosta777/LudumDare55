@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://bufk3ih8hx2xp"]
+[gd_scene load_steps=51 format=3 uid="uid://bufk3ih8hx2xp"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_hd5h2"]
 [ext_resource type="Texture2D" uid="uid://b2kjgon06sqq5" path="res://sprites/character.png" id="2_wyrgv"]
+[ext_resource type="Script" path="res://src/Hitbox.gd" id="3_0sjxj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o467v"]
 radius = 7.0
@@ -221,6 +222,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_bt1wr"]
 resource_name = "attack_right"
@@ -261,6 +286,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_h14jn"]
@@ -400,7 +449,7 @@ animation = &"attack_left"
 blend_point_0/node = SubResource("AnimationNodeAnimation_bpa8i")
 blend_point_0/pos = 1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_dtuqv")
-blend_point_1/pos = -1.0
+blend_point_1/pos = -0.99
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ygdw"]
 animation = &"rest_left"
@@ -461,13 +510,16 @@ advance_condition = &"attacking"
 states/End/position = Vector2(900, 98.8125)
 states/Start/position = Vector2(241, 85.7188)
 states/attacking/node = SubResource("AnimationNodeBlendSpace1D_1jmg8")
-states/attacking/position = Vector2(736.5, 157.614)
+states/attacking/position = Vector2(738, 161.114)
 states/idle/node = SubResource("AnimationNodeBlendSpace1D_xrmku")
 states/idle/position = Vector2(507.375, 85.6734)
 states/walking/node = SubResource("AnimationNodeBlendSpace1D_j4vlp")
 states/walking/position = Vector2(507.75, 213.5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5fgh7"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_256jc"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_xsnxl"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_q504o"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_dwyib"), "attacking", "walking", SubResource("AnimationNodeStateMachineTransition_2opnb"), "walking", "attacking", SubResource("AnimationNodeStateMachineTransition_crjur")]
-graph_offset = Vector2(-57.6202, 28.6135)
+graph_offset = Vector2(190.38, 48.6135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajiaw"]
+size = Vector2(9, 26)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 5
@@ -513,7 +565,7 @@ anim_player = NodePath("AnimationPlayer")
 parameters/conditions/attacking = false
 parameters/conditions/idle = false
 parameters/conditions/walking = false
-parameters/attacking/blend_position = 0.996047
+parameters/attacking/blend_position = 0.01227
 parameters/idle/blend_position = -0.998419
 parameters/walking/blend_position = -0.997628
 
@@ -525,3 +577,15 @@ libraries = {
 
 [node name="CarrySlot" type="Node2D" parent="."]
 position = Vector2(-2.08165e-12, -17)
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_0sjxj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-10.5, 2)
+shape = SubResource("RectangleShape2D_ajiaw")
+disabled = true
+debug_color = Color(1, 0, 0.137255, 0.419608)

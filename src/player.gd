@@ -46,6 +46,7 @@ func handle_inputs(delta):
 		_set_animation_state_walking(false)
 	
 	if Input.is_action_pressed("attack") and !attacking:
+
 		animation_tree["parameters/conditions/attacking"] = true
 	else:
 		animation_tree["parameters/conditions/attacking"] = false

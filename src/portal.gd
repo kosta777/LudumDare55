@@ -34,6 +34,7 @@ func _process(delta):
 	portal_text_label.text = str(portal_loading)
 	
 	if player_in_range and !portal_loading and Input.is_action_just_pressed("interact"):
+		Input.action_release("interact")
 		portal_loading = true
 		timer.start(spawn_time)
 		progress_bar.value = 0

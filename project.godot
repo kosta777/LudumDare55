@@ -59,6 +59,7 @@ attack={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Collidable"
+2d_physics/layer_5="Player_attack"
 2d_physics/layer_9="Pickable"
 
 [rendering]
