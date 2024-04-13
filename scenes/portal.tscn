@@ -66,16 +66,17 @@ _data = [Vector2(0, 0.00535953), 0.0, 0.0, 0, 0, Vector2(0.443344, 0.317686), 0.
 point_count = 3
 
 [node name="Portal" type="Node2D"]
-modulate = Color(0.619608, 0.619608, 0.619608, 1)
 script = ExtResource("1_jaqdm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(1.55, 1.55)
 sprite_frames = SubResource("SpriteFrames_rfllg")
+autoplay = "default"
 frame_progress = 0.435688
 
 [node name="StateLabel" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 12.0
 offset_top = -5.0
 offset_right = 52.0
@@ -99,10 +100,10 @@ shape = SubResource("CapsuleShape2D_ncugg")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.745098, 0.219608, 0.227451, 1)
-offset_left = -31.0
-offset_top = -33.0
-offset_right = 32.0
-offset_bottom = -6.0
+offset_left = -13.0
+offset_top = -34.0
+offset_right = 16.0
+offset_bottom = -7.0
 scale = Vector2(1, 0.3)
 step = 0.1
 show_percentage = false
@@ -112,14 +113,14 @@ one_shot = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 40
-lifetime = 0.62
+amount = 60
+lifetime = 0.8
 one_shot = true
-speed_scale = 1.4
-explosiveness = 0.45
+speed_scale = 1.54
+explosiveness = 0.7
 randomness = 0.24
 emission_shape = 1
-emission_sphere_radius = 5.88
+emission_sphere_radius = 9.67
 spread = 28.26
 gravity = Vector2(2.08165e-12, 2.08165e-12)
 initial_velocity_min = 33.83
@@ -128,7 +129,8 @@ angular_velocity_min = -155.26
 angular_velocity_max = 161.35
 damping_min = 9.302
 damping_max = 16.067
-scale_amount_max = 1.6
+scale_amount_min = 1.2
+scale_amount_max = 1.8
 color = Color(0.207843, 0.858824, 0.270588, 1)
 hue_variation_min = -0.34
 hue_variation_max = 0.36

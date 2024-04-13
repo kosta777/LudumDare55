@@ -13,21 +13,25 @@ extends Node2D
 @onready var particle = $CPUParticles2D
 
 const off_modulate: Color = Color("9e9e9e")
+var stop_scale = .7
+var run_scale = 1.5
 var turn_on = false
 var player_in_range = false
 var tween_loading = null
 var portal_loading = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	animation.speed_scale = stop_scale
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if !portal_loading:
-		modulate = off_modulate
+		animation.self_modulate = off_modulate
+		animation.speed_scale = stop_scale
 	else:
-		modulate = Color.WHITE
+		animation.self_modulate = Color.WHITE
+		animation.speed_scale = run_scale
 	portal_text_label.text = str(portal_loading)
 	
 	if player_in_range and !portal_loading and Input.is_action_just_pressed("interact"):
@@ -36,7 +40,7 @@ func _process(delta):
 		progress_bar.value = 0
 		tween_loading = get_tree().create_tween()
 		tween_loading.tween_property(progress_bar, "value", 100, spawn_time)
-		animation.play()
+		animation.speed_scale = run_scale
 	
 	
 	
@@ -61,5 +65,5 @@ func _on_player_detection_area_body_exited(body):
 func _on_timer_timeout():
 	print("timer is done")
 	portal_loading = false
-	animation.stop()
+	progress_bar.value = 0
 	_spawn_new_node()
