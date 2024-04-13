@@ -1,10 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
-
 const MAX_SPEED = 170.0
 const ACCELERATION = 2000
 const FRICTION = 3000
+
+#Carry stuff
+@onready var carry_slot: Node2D = $CarrySlot
+@onready var pickup_raycast: RayCast2D = $PickUpRaycast
+var is_carrying = false
 
 @export var attacking = false
 var flipped = false
@@ -18,7 +22,7 @@ func move_player(delta):
 	var direction = get_direction()
 	
 	if direction == Vector2.ZERO:
-		var amount = velocity.normalized() *  FRICTION * delta
+		var amount = velocity.normalized() * FRICTION * delta
 		
 		if velocity.length() - amount.length() > 0:
 			velocity -= amount
@@ -40,8 +44,6 @@ func handle_inputs(delta):
 	else:
 		_set_animation_state_walking(false)
 
-	
-
 func _physics_process(delta):
 	handle_inputs(delta)
 
@@ -50,6 +52,32 @@ func _physics_process(delta):
 	move_and_slide()
 	#GameManager.player_position = global_position
 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_SPACE:
+			#If not carrying anything, pick up the object if possible
+			if !is_carrying:
+				if pickup_raycast.is_colliding():
+					var item_to_carry = pickup_raycast.get_collider()
+					print(item_to_carry)
+					if !(item_to_carry is RawMaterialNode):
+						print("ERROR TRIED TO PICK UP SOMETHING THATS NOT RAW MATEIRAL NODE, MAYBE YOUR NODE IS ON THE WRONG LAYER???")
+					else:
+						is_carrying = true
+						item_to_carry.global_position = carry_slot.global_position
+						(item_to_carry as RawMaterialNode).reparent(carry_slot)
+				else:
+					print("no collision")
+			#if is carrying, drop the object
+			else:
+				is_carrying = false
+				var item_to_drop = carry_slot.get_child(0) as RawMaterialNode
+				item_to_drop.reparent(get_parent())
+				var x_force = -100
+				var y_force = 10
+				if (flipped):
+					x_force *= - 1
+				item_to_drop.apply_central_impulse(Vector2(x_force, y_force))
 
 func _set_animation_state_walking(walking):
 	animation_tree["parameters/conditions/idle"] = !walking

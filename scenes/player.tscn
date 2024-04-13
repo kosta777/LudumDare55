@@ -467,7 +467,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-57.6202, 28.6135)
 
 [node name="player" type="CharacterBody2D"]
-position = Vector2(54, 9)
+position = Vector2(2.08165e-12, 2.08165e-12)
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_hd5h2")
@@ -511,3 +511,13 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_0hd2h")
 }
+
+[node name="CarrySlot" type="Node2D" parent="."]
+position = Vector2(-2.08165e-12, -17)
+
+[node name="PickUpRaycast" type="RayCast2D" parent="."]
+position = Vector2(-2.08165e-12, 6)
+target_position = Vector2(-27, -2.08165e-12)
+collision_mask = 256
+hit_from_inside = true
+collide_with_areas = true
