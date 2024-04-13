@@ -1,0 +1,1 @@
+class_name RawMaterialNode extends RigidBody2D
