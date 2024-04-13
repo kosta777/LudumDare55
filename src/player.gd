@@ -44,6 +44,11 @@ func handle_inputs(delta):
 
 	else:
 		_set_animation_state_walking(false)
+	
+	if Input.is_action_pressed("attack") and !attacking:
+		animation_tree["parameters/conditions/attacking"] = true
+	else:
+		animation_tree["parameters/conditions/attacking"] = false
 
 func _physics_process(delta):
 	handle_inputs(delta)
@@ -60,7 +65,7 @@ func _physics_process(delta):
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_SPACE:
+		if event.pressed and event.is_action("interact"):
 			#If not carrying anything, pick up the object if possible
 			if !is_carrying:
 				if pickup_raycast.is_colliding():
@@ -85,7 +90,8 @@ func _unhandled_input(event):
 				var y_force = 300
 				if (flipped):
 					x_force *= - 1
-				item_to_drop.apply_central_impulse(Vector2(x_force, y_force))
+				var force_vect = Vector2(x_force, y_force) + velocity * 3
+				item_to_drop.apply_central_impulse(force_vect)
 
 func _set_animation_state_walking(walking):
 	animation_tree["parameters/conditions/idle"] = !walking
