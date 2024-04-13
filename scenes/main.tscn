@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=10 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Texture2D" uid="uid://bggskp8vio3ek" path="res://sprites/catacombs/mainlevbuild.png" id="2_asqun"]
 [ext_resource type="PackedScene" uid="uid://cceiep174wumd" path="res://scenes/raw_material_node.tscn" id="2_cdoks"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
+[ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/summon_satan.tres" id="6_8542l"]
+[ext_resource type="Resource" uid="uid://bbjlrhrt71xf4" path="res://Recipes/summon_bahamut.tres" id="7_6rebh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1060,3 +1062,4 @@ spawn_node = ExtResource("2_cdoks")
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 unique_name_in_owner = true
 position = Vector2(307, 328)
+recipes = Array[Resource("res://Recipes/recipe_base.gd")]([ExtResource("6_8542l"), ExtResource("7_6rebh")])

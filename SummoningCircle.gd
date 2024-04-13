@@ -50,17 +50,23 @@ func summon_demon() -> void:
 		
 	if recipes.size() == 0:
 		return
-	
-	var can_summon := false
+		
 	print("here are the %s recipes" % recipes.size())
 	print("here are your ingredients: %s" % ingredients_received)
+	
 	for recipe in recipes:
+		var can_summon := true
+		recipe.ingredient_list()
 		print("%s: %s" % [recipe.recipe_name, recipe.ingredients_needed])
-		if recipe.ingredients_needed == ingredients_received:
-			can_summon = true
-			print("%s successful!" % recipe.recipe_name)
-			break
+		for ingredient in ingredients_received.keys():
+			if ingredients_received.values()[ingredient] != recipe.ingredients_needed[ingredient]:
+				can_summon = false
+				print("%s failed" % [recipe.recipe_name])
+				break
+		if can_summon:
+			print("%s worked" % [recipe.recipe_name])
 	reset_ingredients_received()
+	update_labels()
 	
 	
 
