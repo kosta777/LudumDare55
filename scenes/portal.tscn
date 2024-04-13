@@ -1,30 +1,30 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctqe760l6nkwk"]
 
-[ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal.png" id="1_egbgb"]
 [ext_resource type="Script" path="res://src/portal.gd" id="1_jaqdm"]
+[ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal_spawn.png" id="2_7axae"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl5w6"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(8, 0, 18, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eip7q"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(40, 0, 18, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_62aga"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(72, 0, 18, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5tvg"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(8, 32, 18, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mbln8"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(40, 32, 18, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqbca"]
-atlas = ExtResource("1_egbgb")
+atlas = ExtResource("2_7axae")
 region = Rect2(72, 32, 18, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rfllg"]
