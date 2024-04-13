@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6eqroj8r4ncf"]
+[gd_scene load_steps=4 format=3 uid="uid://cceiep174wumd"]
 
 [ext_resource type="Script" path="res://src/raw_material_node.gd" id="1_0e2tw"]
 [ext_resource type="PackedScene" uid="uid://41v1kmyutoyh" path="res://Ingredients/ingredient_drop.tscn" id="2_k30nt"]
@@ -8,6 +8,7 @@ size = Vector2(16.4445, 15.8088)
 
 [node name="RawMaterialNode" type="RigidBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(5, 5)
 collision_layer = 256
 collision_mask = 0
 mass = 2.0
