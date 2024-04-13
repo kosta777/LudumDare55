@@ -7,7 +7,7 @@ const FRICTION = 3000
 
 #Carry stuff
 @onready var carry_slot: Node2D = $CarrySlot
-@onready var pickup_raycast: RayCast2D = $PickUpRaycast
+@onready var pickup_raycast: ShapeCast2D = $Sprite2D/PickUpRaycast
 var is_carrying = false
 
 @export var attacking = false
@@ -58,12 +58,13 @@ func _unhandled_input(event):
 			#If not carrying anything, pick up the object if possible
 			if !is_carrying:
 				if pickup_raycast.is_colliding():
-					var item_to_carry = pickup_raycast.get_collider()
+					var item_to_carry = pickup_raycast.get_collider(0)
 					print(item_to_carry)
 					if !(item_to_carry is RawMaterialNode):
 						print("ERROR TRIED TO PICK UP SOMETHING THATS NOT RAW MATEIRAL NODE, MAYBE YOUR NODE IS ON THE WRONG LAYER???")
 					else:
 						is_carrying = true
+						(item_to_carry as RawMaterialNode).freeze = true
 						item_to_carry.global_position = carry_slot.global_position
 						(item_to_carry as RawMaterialNode).reparent(carry_slot)
 				else:
@@ -72,9 +73,10 @@ func _unhandled_input(event):
 			else:
 				is_carrying = false
 				var item_to_drop = carry_slot.get_child(0) as RawMaterialNode
+				(item_to_drop as RawMaterialNode).freeze = false
 				item_to_drop.reparent(get_parent())
-				var x_force = -100
-				var y_force = 10
+				var x_force = 500
+				var y_force = 300
 				if (flipped):
 					x_force *= - 1
 				item_to_drop.apply_central_impulse(Vector2(x_force, y_force))
@@ -86,6 +88,8 @@ func _set_animation_state_walking(walking):
 func _set_blend_position(x):
 	if x != 0:
 		flipped = x < 0
+		pickup_raycast.scale.x = 1 if flipped else - 1
+
 		animation_tree["parameters/idle/blend_position"] = x
 		animation_tree["parameters/walking/blend_position"] = x
 		if !attacking:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bufk3ih8hx2xp"]
+[gd_scene load_steps=49 format=3 uid="uid://bufk3ih8hx2xp"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_hd5h2"]
 [ext_resource type="Texture2D" uid="uid://b2kjgon06sqq5" path="res://sprites/character.png" id="2_wyrgv"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o467v"]
 radius = 7.0
 height = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixic4"]
+size = Vector2(2.89, 10.36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u87em"]
 atlas = ExtResource("2_wyrgv")
@@ -484,6 +487,13 @@ hframes = 8
 vframes = 9
 frame = 24
 
+[node name="PickUpRaycast" type="ShapeCast2D" parent="Sprite2D"]
+position = Vector2(-2.08165e-12, 4)
+shape = SubResource("RectangleShape2D_ixic4")
+target_position = Vector2(-27, -2.08165e-12)
+collision_mask = 256
+collide_with_areas = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -514,10 +524,3 @@ libraries = {
 
 [node name="CarrySlot" type="Node2D" parent="."]
 position = Vector2(-2.08165e-12, -17)
-
-[node name="PickUpRaycast" type="RayCast2D" parent="."]
-position = Vector2(-2.08165e-12, 6)
-target_position = Vector2(-27, -2.08165e-12)
-collision_mask = 256
-hit_from_inside = true
-collide_with_areas = true
