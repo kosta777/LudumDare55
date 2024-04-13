@@ -41,6 +41,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="IngredientAmount1"]
+layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
@@ -58,6 +59,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="IngredientAmount2"]
+layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
@@ -75,6 +77,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="IngredientAmount3"]
+layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
@@ -92,6 +95,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="IngredientAmount4"]
+layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
@@ -109,6 +113,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="IngredientAmount5"]
+layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0

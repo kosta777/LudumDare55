@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RecipeBase" load_steps=2 format=3 uid="uid://dauly75xr48l8"]
+
+[ext_resource type="Script" path="res://Recipes/recipe_base.gd" id="1_mwhba"]
+
+[resource]
+script = ExtResource("1_mwhba")
+recipe_name = "Summon Satan"
+black_souls = 3
+red_souls = 10
+purple_souls = 0
+wings = 3
+horns = 1
