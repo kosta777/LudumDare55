@@ -19,6 +19,7 @@ config/icon="res://sprites/icon.svg"
 
 window/size/viewport_width=1600
 window/size/viewport_height=1100
+window/size/mode=2
 
 [input]
 
