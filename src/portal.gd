@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var spawn_time: int = 2 #seconds
+@export var spawn_time: int = 2 # seconds
 @export var spawn_node: PackedScene
 @export var spawn_direction: Vector2 = Vector2.LEFT
 @export var spawn_force: float = 250
@@ -23,7 +23,6 @@ var portal_loading = false
 func _ready():
 	animation.speed_scale = stop_scale
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if !portal_loading:
@@ -42,25 +41,20 @@ func _process(delta):
 		tween_loading.tween_property(progress_bar, "value", 100, spawn_time)
 		animation.speed_scale = run_scale
 	
-	
-	
 func _spawn_new_node():
 	var new_node = spawn_node.instantiate() as Node2D
 	get_parent().add_child(new_node)
 	new_node.position = position
 	(new_node as RawMaterialNode).apply_central_impulse(
-		Vector2.RIGHT.rotated(PI/10 * randf_range(-1 , 1)) * spawn_force
+		Vector2.RIGHT.rotated(PI / 10 * randf_range( - 1, 1)) * spawn_force
 	)
 	particle.emitting = true
-
 
 func _on_player_detection_area_body_entered(body):
 	player_in_range = true
 
-
 func _on_player_detection_area_body_exited(body):
 	player_in_range = false
-
 
 func _on_timer_timeout():
 	print("timer is done")
