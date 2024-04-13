@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://drpjbbs0boxa1"]
+[gd_scene load_steps=5 format=3 uid="uid://drpjbbs0boxa1"]
 
 [ext_resource type="Script" path="res://SummoningCircle.gd" id="1_2bpyk"]
 [ext_resource type="Texture2D" uid="uid://b1qddaqfurwk0" path="res://sprites/MC_Sample_1.png" id="2_oshkp"]
+[ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="3_ihi3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4fm"]
 size = Vector2(125, 125)
@@ -15,18 +16,104 @@ script = ExtResource("1_2bpyk")
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_fs4fm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -63.0
-offset_top = -62.0
-offset_right = 129.0
-offset_bottom = 130.0
+offset_left = 62.0
+offset_top = 62.0
+offset_right = 254.0
+offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 3.14159
 scale = Vector2(0.646054, 0.646054)
 texture = ExtResource("2_oshkp")
+stretch_mode = 5
+
+[node name="IngredientAmount1" type="Label" parent="."]
+offset_left = -49.0
+offset_top = -60.0
+offset_right = -30.0
+offset_bottom = -37.0
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="IngredientAmount1"]
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 6.0
+texture = ExtResource("3_ihi3e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="IngredientAmount2" type="Label" parent="."]
+offset_left = 30.0
+offset_top = -64.0
+offset_right = 49.0
+offset_bottom = -41.0
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="IngredientAmount2"]
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 6.0
+texture = ExtResource("3_ihi3e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="IngredientAmount3" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 11.0
+offset_right = 70.0
+offset_bottom = 34.0
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="IngredientAmount3"]
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 6.0
+texture = ExtResource("3_ihi3e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="IngredientAmount4" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 51.0
+offset_right = 9.0
+offset_bottom = 74.0
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="IngredientAmount4"]
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 6.0
+texture = ExtResource("3_ihi3e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="IngredientAmount5" type="Label" parent="."]
+offset_left = -72.0
+offset_top = 10.0
+offset_right = -53.0
+offset_bottom = 33.0
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="IngredientAmount5"]
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 6.0
+texture = ExtResource("3_ihi3e")
+expand_mode = 3
 stretch_mode = 5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
