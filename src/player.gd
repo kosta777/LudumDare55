@@ -58,7 +58,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 	#Dont allow player to leave camera rect
-	var bounding_area = get_viewport_rect()
+	#var bounding_area = get_viewport_rect()
+	var bounding_area = (get_viewport().get_camera_2d() as CustomCamera).movement_bounding_box
 	global_position = global_position.clamp(Vector2(bounding_area.position.x + player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + player_collision.shape.get_rect().size.y / 2),
 		Vector2(bounding_area.position.x + bounding_area.size.x - player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + bounding_area.size.y - player_collision.shape.get_rect().size.y / 2))
 	#GameManager.player_position = global_position
