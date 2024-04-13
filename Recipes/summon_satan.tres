@@ -5,8 +5,9 @@
 [resource]
 script = ExtResource("1_mwhba")
 recipe_name = "Summon Satan"
-black_souls = 3
-red_souls = 10
+recipe_time_limit = 60
+black_souls = 1
+red_souls = 0
 purple_souls = 0
-wings = 3
-horns = 1
+horns = 0
+wings = 0
