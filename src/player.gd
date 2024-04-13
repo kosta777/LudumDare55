@@ -34,11 +34,13 @@ func move_player(delta):
 
 func handle_inputs(delta):
 	move_player(delta)
-	
-	if Input.is_action_pressed("attack") and !attacking:
-		animation_tree["parameters/conditions/attacking"] = true
+	if velocity.length() > 0:
+		_set_animation_state_walking(true)
+
 	else:
-		animation_tree["parameters/conditions/attacking"] = false
+		_set_animation_state_walking(false)
+
+	
 
 func _physics_process(delta):
 	handle_inputs(delta)
