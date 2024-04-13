@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cceiep174wumd"]
+[gd_scene load_steps=4 format=3 uid="uid://c6eqroj8r4ncf"]
 
 [ext_resource type="Script" path="res://src/raw_material_node.gd" id="1_0e2tw"]
-[ext_resource type="Texture2D" uid="uid://4jx1svksyh2y" path="res://sprites/icon.svg" id="2_npege"]
+[ext_resource type="PackedScene" uid="uid://41v1kmyutoyh" path="res://Ingredients/ingredient_drop.tscn" id="2_k30nt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1g6n"]
 size = Vector2(16.4445, 15.8088)
@@ -14,11 +14,11 @@ mass = 0.5
 gravity_scale = 1.66533e-16
 script = ExtResource("1_0e2tw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(0.128473, 0.125919)
-texture = ExtResource("2_npege")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_s1g6n")
+
+[node name="CarriedItem" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Ingredient" parent="CarriedItem" instance=ExtResource("2_k30nt")]

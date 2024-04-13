@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://drpjbbs0boxa1"]
 
 [ext_resource type="Script" path="res://SummoningCircle.gd" id="1_2bpyk"]
-[ext_resource type="Texture2D" uid="uid://b1qddaqfurwk0" path="res://sprites/MC_Sample_1.png" id="2_oshkp"]
+[ext_resource type="Texture2D" uid="uid://d0ov25i5a62wl" path="res://sprites/portal.png" id="2_ee5kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4fm"]
 size = Vector2(125, 125)
@@ -19,14 +19,8 @@ shape = SubResource("RectangleShape2D_fs4fm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -63.0
-offset_top = -62.0
-offset_right = 129.0
-offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.646054, 0.646054)
-texture = ExtResource("2_oshkp")
-stretch_mode = 5
+texture = ExtResource("2_ee5kv")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
