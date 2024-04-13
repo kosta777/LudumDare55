@@ -1069,7 +1069,6 @@ spawn_node = ExtResource("2_cdoks")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 position = Vector2(302, 289)
-scale = Vector2(-1, -1)
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
 visible = false
