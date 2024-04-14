@@ -158,3 +158,6 @@ func take_damage(amount):
 	var camera = get_parent().find_child("Camera2D")
 
 	camera.apply_shake()
+
+	if health <=0:
+		get_parent().on_player_death()

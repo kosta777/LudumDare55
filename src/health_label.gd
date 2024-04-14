@@ -9,4 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	size.x = 16 *player.health
+	if player != null:
+		size.x = 16 *player.health

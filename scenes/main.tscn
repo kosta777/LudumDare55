@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=22 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://dmv1100e4ivi6" path="res://sprites/gold.png" id="13_68i7a"]
 [ext_resource type="Texture2D" uid="uid://bilqyg3x43546" path="res://sprites/space_unpressed.png" id="13_q8t8n"]
 [ext_resource type="Texture2D" uid="uid://ctw741e8e8qxw" path="res://sprites/e_unpressed.png" id="14_xlrt3"]
+[ext_resource type="Texture2D" uid="uid://duaewcixw35xy" path="res://sprites/Parts/long_button_off.png" id="16_mn7uf"]
+[ext_resource type="Texture2D" uid="uid://vobk2l783jnc" path="res://sprites/Parts/mid_bar.png" id="16_qp5ni"]
+[ext_resource type="Texture2D" uid="uid://btvylgesmedeu" path="res://sprites/Parts/long_button_on.png" id="17_wfpv7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1054,13 +1057,16 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(17, 32, 590, 32, 591, 350, 21, 349), PackedVector2Array(397, 77, 399, 128, 439, 126, 437, 77), PackedVector2Array(513, 250, 513, 309, 567, 310, 562, 249), PackedVector2Array(89, 116, 89, 163, 51, 163, 50, 116)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container", "summoning_circle", "score_label")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container", "final_score_label", "summoning_circle", "score_label", "game_over_screen")]
 script = ExtResource("1_m21n3")
 tasks_container = NodePath("HUD/Tasks")
 task_scene = ExtResource("7_yfrwv")
 recipes = Array[Resource("res://Recipes/recipe_base.gd")]([ExtResource("3_hlbl4"), ExtResource("2_4tt3s")])
+final_score_label = NodePath("HUD/GameOverScreen/HBoxContainer/RichTextLabel")
 summoning_circle = NodePath("SummoningCircle")
 score_label = NodePath("HUD/HBoxContainer/RichTextLabel")
+game_over_screen = NodePath("HUD/GameOverScreen")
+metadata/_edit_horizontal_guides_ = [-191.0]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
@@ -1203,4 +1209,75 @@ offset_bottom = -28.0
 text = "Interact/Pick/Throw"
 scroll_active = false
 
+[node name="GameOverScreen" type="TextureRect" parent="HUD"]
+visible = false
+self_modulate = Color(0.533333, 0.266667, 0.141176, 0.815686)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -200.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_qp5ni")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/GameOverScreen"]
+offset_left = 132.667
+offset_top = 47.3333
+offset_right = 189.667
+offset_bottom = 61.3333
+scale = Vector2(2.42371, 4.65857)
+text = "Game Over"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HUD/GameOverScreen"]
+offset_left = 133.0
+offset_top = 117.0
+offset_right = 201.0
+offset_bottom = 131.0
+scale = Vector2(1.29191, 1.58647)
+text = "Final score:"
+scroll_active = false
+
+[node name="Button" type="TextureButton" parent="HUD/GameOverScreen"]
+layout_mode = 0
+offset_left = 158.667
+offset_top = 170.0
+offset_right = 234.667
+offset_bottom = 190.0
+texture_normal = ExtResource("16_mn7uf")
+texture_pressed = ExtResource("17_wfpv7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/GameOverScreen/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/GameOverScreen"]
+offset_left = 219.333
+offset_top = 115.333
+offset_right = 265.333
+offset_bottom = 139.333
+
+[node name="RichTextLabel" type="Label" parent="HUD/GameOverScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/GameOverScreen/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_68i7a")
+expand_mode = 2
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="HUD/GameOverScreen/Button" to="." method="_on_button_pressed"]
