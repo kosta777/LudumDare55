@@ -4,7 +4,7 @@ extends CharacterBody2D
 const MAX_SPEED = 45.0
 const ACCELERATION = 700
 const FRICTION = 1000
-const FULL_HEALTH = 3
+const FULL_HEALTH = 2
 
 var knockback_vect = Vector2.ZERO
 

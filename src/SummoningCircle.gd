@@ -67,10 +67,14 @@ func update_labels() -> void:
 	tween.tween_property(sprite, "modulate:v", 1, 0.25).from(15)
 
 
+var carry = false
 func _process(delta):
-	if Input.is_action_just_pressed("interact") and player_inside:
-		summon_demon()
 
+
+	if Input.is_action_just_pressed("interact") and player_inside and !carry:
+		summon_demon()
+	
+	carry = get_parent().get_node("player").is_carrying
 
 func summon_demon() -> void:
 	if not is_node_ready():
