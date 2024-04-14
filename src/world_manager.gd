@@ -51,6 +51,7 @@ func on_recipe_completed(recipe):
 			key.queue_free()
 			score += recipe.score
 			score_label.text = str(score)
+			break
 
 func get_current_recipes():
 	return ui_to_recipes.values()
