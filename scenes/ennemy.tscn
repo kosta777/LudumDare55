@@ -47,7 +47,7 @@ height = 26.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_728pl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0ctr"]
-radius = 9.0
+radius = 8.0
 height = 28.0
 
 [node name="ennemy" type="CharacterBody2D"]
@@ -67,10 +67,11 @@ position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_w47xk")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 0.1
+path_desired_distance = 15.0
+target_desired_distance = 2.0
 avoidance_enabled = true
 radius = 15.0
-time_horizon_obstacles = 1.0
+max_speed = 50.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
