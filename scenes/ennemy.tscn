@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4htb0dum7jiv" path="res://sprites/skeleton.png" id="1_fxmjg"]
 [ext_resource type="Script" path="res://src/Hitbox.gd" id="3_dbkkb"]
 
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxenp"]
 atlas = ExtResource("1_fxmjg")
 region = Rect2(0, 34, 34, 34)

@@ -82,7 +82,4 @@ custom_minimum_size = Vector2(2.08165e-12, 10)
 layout_mode = 2
 alignment = 1
 
-[node name="IngredientForRecipe" parent="MarginContainer/MarginContainer/VBoxContainer/NeededContainer" instance=ExtResource("4_e6gsa")]
-layout_mode = 2
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

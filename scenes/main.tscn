@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=15 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
+[ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
+[ext_resource type="Resource" uid="uid://bbjlrhrt71xf4" path="res://Recipes/summon_bahamut.tres" id="2_4tt3s"]
 [ext_resource type="Texture2D" uid="uid://bggskp8vio3ek" path="res://sprites/catacombs/mainlevbuild.png" id="2_asqun"]
 [ext_resource type="PackedScene" uid="uid://cceiep174wumd" path="res://scenes/raw_material_node.tscn" id="2_cdoks"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_43ukl"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
+[ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/summon_satan.tres" id="3_hlbl4"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
 [ext_resource type="PackedScene" path="res://scenes/ennemy.tscn" id="7_3i16v"]
+[ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1043,7 +1047,12 @@ sources/0 = SubResource("TileSetAtlasSource_p6ilv")
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_t7ptk"]
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container", "summoning_circle")]
+script = ExtResource("1_m21n3")
+tasks_container = NodePath("HUD/Tasks")
+task_scene = ExtResource("7_yfrwv")
+recipes = Array[Resource("res://Recipes/recipe_base.gd")]([ExtResource("3_hlbl4"), ExtResource("2_4tt3s")])
+summoning_circle = NodePath("SummoningCircle")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
@@ -1076,7 +1085,6 @@ spawn_node = ExtResource("2_cdoks")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 position = Vector2(302, 289)
-recipes = Array[Resource("res://Recipes/recipe_base.gd")]([])
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
 offset_left = 17.0
