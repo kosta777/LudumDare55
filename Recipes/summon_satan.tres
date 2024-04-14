@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="RecipeBase" load_steps=2 format=3 uid="uid://dauly75xr48l8"]
+[gd_resource type="Resource" script_class="RecipeBase" load_steps=3 format=3 uid="uid://dauly75xr48l8"]
 
+[ext_resource type="Texture2D" uid="uid://ddwbla6ohhcnh" path="res://sprites/Demons/red_demon.png" id="1_jbrb5"]
 [ext_resource type="Script" path="res://Recipes/recipe_base.gd" id="1_mwhba"]
 
 [resource]
 script = ExtResource("1_mwhba")
 recipe_name = "Summon Satan"
-recipe_time_limit = 60
+recipe_time_limit = 5
+demon_texture = ExtResource("1_jbrb5")
 black_souls = 1
 red_souls = 0
 purple_souls = 0

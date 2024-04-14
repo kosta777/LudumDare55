@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=13 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
+[ext_resource type="Script" path="res://src/game_manager.gd" id="1_j42a2"]
+[ext_resource type="Resource" uid="uid://bbjlrhrt71xf4" path="res://Recipes/summon_bahamut.tres" id="2_4tt3s"]
 [ext_resource type="Texture2D" uid="uid://bggskp8vio3ek" path="res://sprites/catacombs/mainlevbuild.png" id="2_asqun"]
 [ext_resource type="PackedScene" uid="uid://cceiep174wumd" path="res://scenes/raw_material_node.tscn" id="2_cdoks"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_43ukl"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
+[ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/summon_satan.tres" id="3_hlbl4"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 
@@ -1040,7 +1043,15 @@ texture = ExtResource("2_asqun")
 [sub_resource type="TileSet" id="TileSet_62d47"]
 sources/0 = SubResource("TileSetAtlasSource_p6ilv")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container")]
+script = ExtResource("1_j42a2")
+tasks_container = NodePath("HUD/Tasks")
+task_scene = ExtResource("7_yfrwv")
+recipes = Array[Resource("res://Recipes/recipe_base.gd")]([ExtResource("2_4tt3s"), ExtResource("3_hlbl4")])
+time_between_recipes = 20.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_62d47")
@@ -1090,6 +1101,4 @@ anchor_right = 1.0
 offset_bottom = 55.0
 grow_horizontal = 2
 
-[node name="Task" parent="HUD/Tasks" instance=ExtResource("7_yfrwv")]
-unique_name_in_owner = true
-layout_mode = 2
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

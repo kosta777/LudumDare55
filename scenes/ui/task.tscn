@@ -8,7 +8,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko452"]
 
-[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container")]
+[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container", "timer", "progress_bar")]
 custom_minimum_size = Vector2(100, 2.08165e-12)
 anchors_preset = 8
 anchor_left = 0.5
@@ -24,6 +24,10 @@ script = ExtResource("1_xk40e")
 demon_icon = NodePath("MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/DemonIcon")
 ingredients_container = NodePath("MarginContainer/MarginContainer/VBoxContainer/NeededContainer")
 ingredients_window_scene = ExtResource("4_e6gsa")
+timer = NodePath("Timer")
+progress_bar = NodePath("MarginContainer/MarginContainer/VBoxContainer/TextureProgressBar")
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -80,3 +84,5 @@ alignment = 1
 
 [node name="IngredientForRecipe" parent="MarginContainer/MarginContainer/VBoxContainer/NeededContainer" instance=ExtResource("4_e6gsa")]
 layout_mode = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

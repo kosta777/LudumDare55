@@ -3,12 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="1_lbfjd"]
 [ext_resource type="Script" path="res://src/ingredient_for_recipe.gd" id="1_txggn"]
 
-[node name="IngredientForRecipe" type="HBoxContainer"]
+[node name="IngredientForRecipe" type="HBoxContainer" node_paths=PackedStringArray("icon", "textbox")]
 offset_right = 17.0
 offset_bottom = 7.0
 theme_override_constants/separation = 0
 alignment = 1
 script = ExtResource("1_txggn")
+icon = NodePath("TextureRect")
+textbox = NodePath("RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

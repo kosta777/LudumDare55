@@ -4,6 +4,8 @@ extends Resource
 @export var recipe_name : String
 @export var recipe_time_limit : int
 
+@export var demon_texture: Texture2D
+
 @export_category("Ingredients amount")
 
 @export_range(0,10,1) var black_souls : int
