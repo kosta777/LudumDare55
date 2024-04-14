@@ -30,6 +30,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Ld55"
 
+[gui]
+
+theme/custom_font="res://font/m5x7.ttf"
+
 [input]
 
 move-left={
