@@ -8,6 +8,7 @@ class_name Task extends Panel
 @export var timer:Timer
 @export var progress_bar : ProgressBar
 @export var score_label:Label 
+@export var name_label: Label
 
 var recipe: RecipeBase
 
@@ -24,6 +25,7 @@ func setup(_recipe, parent, _game_manager):
 	recipe.ingredient_list()
 	score_label.text = str(recipe.score)
 
+	name_label.text = str(recipe.recipe_name)
 	demon_icon.texture = recipe.demon_texture
 
 	for ingredient in recipe.ingredients_needed.keys():

@@ -8,13 +8,13 @@
 [resource]
 script = ExtResource("4_03dfv")
 recipe_name = "Summon Satan"
-recipe_time_limit = 5
+recipe_time_limit = 30
 demon_texture = ExtResource("3_v42pg")
 demon_sprite_frames = ExtResource("2_l466o")
 demon_scene = ExtResource("1_7l461")
-score = 10
-black_souls = 1
+score = 15
+black_souls = 3
 red_souls = 0
 purple_souls = 0
-horns = 0
+horns = 2
 wings = 0

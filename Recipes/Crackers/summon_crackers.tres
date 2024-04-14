@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="RecipeBase" load_steps=5 format=3 uid="uid://meoqcrlyk6ii"]
+
+[ext_resource type="PackedScene" uid="uid://cq1lsmx0hwmu" path="res://scenes/demons/demon.tscn" id="1_c3vwt"]
+[ext_resource type="SpriteFrames" uid="uid://wrqkv6kkkvoo" path="res://Recipes/Crackers/sprite_frames.tres" id="2_us8fi"]
+[ext_resource type="Texture2D" uid="uid://cu3ls20u8g1ai" path="res://sprites/Demons/crackers.png" id="3_kvmpq"]
+[ext_resource type="Script" path="res://Recipes/recipe_base.gd" id="4_irpqs"]
+
+[resource]
+script = ExtResource("4_irpqs")
+recipe_name = "Summon Crackers"
+recipe_time_limit = 10
+demon_texture = ExtResource("3_kvmpq")
+demon_sprite_frames = ExtResource("2_us8fi")
+demon_scene = ExtResource("1_c3vwt")
+score = 5
+black_souls = 1
+red_souls = 0
+purple_souls = 0
+horns = 0
+wings = 0

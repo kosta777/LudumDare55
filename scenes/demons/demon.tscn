@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq1lsmx0hwmu"]
 
 [ext_resource type="Script" path="res://src/demon.gd" id="1_m0tdl"]
-[ext_resource type="SpriteFrames" uid="uid://b0lof12jdsu2" path="res://Recipes/Satan/sprite_frames.tres" id="2_unnw0"]
+[ext_resource type="SpriteFrames" uid="uid://wrqkv6kkkvoo" path="res://Recipes/Crackers/sprite_frames.tres" id="2_luyqf"]
 
 [node name="demon" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
 y_sort_enabled = true
@@ -13,6 +13,6 @@ script = ExtResource("1_m0tdl")
 animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_unnw0")
+sprite_frames = ExtResource("2_luyqf")
 autoplay = "default"
-frame_progress = 0.429498
+frame_progress = 0.136107

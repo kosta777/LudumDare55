@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d223h166mgv2s"]
+[gd_scene load_steps=5 format=3 uid="uid://d223h166mgv2s"]
 
 [ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="1_lbfjd"]
 [ext_resource type="Script" path="res://src/ingredient_for_recipe.gd" id="1_txggn"]
+[ext_resource type="FontFile" uid="uid://bkrjajdr3nquh" path="res://font/smollerMono.ttf" id="3_g3q4q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyita"]
+font_size = 7
 
 [node name="IngredientForRecipe" type="HBoxContainer" node_paths=PackedStringArray("icon", "textbox")]
-offset_right = 17.0
-offset_bottom = 7.0
+offset_right = 18.0
+offset_bottom = 8.0
 theme_override_constants/separation = 0
 alignment = 1
 script = ExtResource("1_txggn")
@@ -14,14 +18,16 @@ textbox = NodePath("RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("1_lbfjd")
 expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 8
-bbcode_enabled = true
-text = "[center]5
-"
-scroll_active = false
+theme_override_fonts/font = ExtResource("3_g3q4q")
+theme_override_font_sizes/font_size = 0
+text = "5"
+label_settings = SubResource("LabelSettings_jyita")
+horizontal_alignment = 1
+vertical_alignment = 1

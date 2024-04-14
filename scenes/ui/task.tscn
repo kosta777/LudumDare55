@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko452"]
 
-[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container", "timer", "progress_bar", "score_label")]
+[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container", "timer", "progress_bar", "score_label", "name_label")]
 custom_minimum_size = Vector2(100, 2.08165e-12)
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,6 +28,7 @@ ingredients_window_scene = ExtResource("4_e6gsa")
 timer = NodePath("Timer")
 progress_bar = NodePath("MarginContainer/MarginContainer/VBoxContainer/TextureProgressBar")
 score_label = NodePath("MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/GoldLabel")
+name_label = NodePath("MarginContainer/MarginContainer/VBoxContainer/name")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -63,10 +64,11 @@ theme_override_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureProgressBar" type="ProgressBar" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="name" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-value = 100.0
-show_percentage = false
+text = "Recipe name"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -90,8 +92,13 @@ size_flags_vertical = 3
 texture = ExtResource("6_d6iv8")
 
 [node name="NeededContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 alignment = 1
+
+[node name="TextureProgressBar" type="ProgressBar" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
