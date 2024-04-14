@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bufk3ih8hx2xp"]
+[gd_scene load_steps=52 format=3 uid="uid://bufk3ih8hx2xp"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_hd5h2"]
 [ext_resource type="Texture2D" uid="uid://b2kjgon06sqq5" path="res://sprites/character.png" id="2_wyrgv"]
@@ -521,10 +521,14 @@ graph_offset = Vector2(190.38, 48.6135)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajiaw"]
 size = Vector2(9, 26)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_synuu"]
+radius = 7.0
+height = 26.0
+
 [node name="player" type="CharacterBody2D"]
 z_index = 5
 position = Vector2(2.08165e-12, 2.08165e-12)
-collision_mask = 3
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_hd5h2")
 
@@ -583,9 +587,21 @@ scale = Vector2(1e-05, 1e-05)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("3_0sjxj")
+damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-10.5, 2)
 shape = SubResource("RectangleShape2D_ajiaw")
 disabled = true
 debug_color = Color(1, 0, 0.137255, 0.419608)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-2.08165e-12, 1)
+shape = SubResource("CapsuleShape2D_synuu")
+debug_color = Color(0.992157, 0.0941176, 0, 0.419608)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

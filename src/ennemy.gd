@@ -11,6 +11,8 @@ var knockback_vect = Vector2.ZERO
 var health = FULL_HEALTH
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var animation = $AnimatedSprite2D
+@onready var hitbox = $HitBox
 
 func _physics_process(delta):
 	navigate(delta)
@@ -21,6 +23,9 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	
 	move_and_slide()
+	
+	animation.flip_h = velocity.x < 0
+	hitbox.hit_direction = velocity.normalized()
 	
 func _process(delta):
 	navigation_agent.target_position = GameManager.player_position
@@ -35,4 +40,4 @@ func navigate(delta):
 func _on_hurt_box_area_entered(area):
 	area = area as HitBox
 	velocity += area.hit_direction * 350
-	health -= 1
+	health -= area.damage

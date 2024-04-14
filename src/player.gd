@@ -12,6 +12,7 @@ const FRICTION = 3000
 @onready var hitbox: HitBox = $Hitbox
 
 var is_carrying = false
+var just_hitted = false
 
 @export var attacking = false
 var flipped = false
@@ -69,6 +70,7 @@ func _physics_process(delta):
 	global_position = global_position.clamp(Vector2(bounding_area.position.x + player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + player_collision.shape.get_rect().size.y / 2),
 		Vector2(bounding_area.position.x + bounding_area.size.x - player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + bounding_area.size.y - player_collision.shape.get_rect().size.y / 2))
 	GameManager.player_position = global_position
+	
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -113,3 +115,24 @@ func _set_blend_position(x):
 		animation_tree["parameters/walking/blend_position"] = x
 		if !attacking:
 			animation_tree["parameters/attacking/blend_position"] = x
+
+func _on_hurt_box_area_entered(area):
+	print("player hit")
+	area = area as HitBox
+	velocity += area.hit_direction * 380
+	just_hitted = true
+	var tween = get_tree().create_tween().bind_node(self)
+	tween.set_loops()
+	tween.tween_callback(
+		func(): print("test")
+	)
+	tween.tween_callback(
+		func(): set_visible(false)
+	)
+
+	tween = tween.chain()
+	tween.tween_callback(
+		func(): set_visible(true)
+	).set_delay(.5)
+	
+	
