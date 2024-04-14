@@ -1,13 +1,13 @@
 extends Area2D
 
-@export var recipes : Array[RecipeBase]
-
 @onready var ingredient_amount_1: Label = $IngredientAmount1
 @onready var ingredient_amount_2: Label = $IngredientAmount2
 @onready var ingredient_amount_3: Label = $IngredientAmount3
 @onready var ingredient_amount_4: Label = $IngredientAmount4
 @onready var ingredient_amount_5: Label = $IngredientAmount5
 @onready var sprite: TextureRect = $Sprite
+
+@export var world_manager: WorldManager
 
 
 var ingredients_received := {}
@@ -17,6 +17,8 @@ func _ready() -> void:
 	reset_ingredients_received()
 	update_labels()
 
+func setup(_world_manager):
+	world_manager = _world_manager
 
 func _on_body_entered(body: RawMaterialNode) -> void:
 	for child in body.carried_item.get_children():
@@ -48,11 +50,12 @@ func summon_demon() -> void:
 	if not is_node_ready():
 		await ready
 		
-	if recipes.size() == 0:
+	if world_manager.get_current_recipes().size() ==0:
 		return
-		
-	print("here are the %s recipes" % recipes.size())
-	print("here are your ingredients: %s" % ingredients_received)
+	
+	var recipes = world_manager.get_current_recipes()
+	#print("here are the %s recipes" %  recipes)
+	#print("here are your ingredients: %s" % ingredients_received)
 	
 	for recipe in recipes:
 		var can_summon := true
