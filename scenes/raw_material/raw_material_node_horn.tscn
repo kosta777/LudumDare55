@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cceiep174wumd"]
+[gd_scene load_steps=6 format=3 uid="uid://dnmxpd3m75wi0"]
 
-[ext_resource type="Script" path="res://src/raw_material_node.gd" id="1_0e2tw"]
-[ext_resource type="PackedScene" uid="uid://41v1kmyutoyh" path="res://Ingredients/ingredient_drop.tscn" id="2_k30nt"]
+[ext_resource type="Script" path="res://src/raw_material_node.gd" id="1_kiwtm"]
+[ext_resource type="PackedScene" uid="uid://41v1kmyutoyh" path="res://Ingredients/ingredient_drop.tscn" id="2_nkj2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1g6n"]
 size = Vector2(16.4445, 15.8088)
@@ -34,7 +34,7 @@ collision_mask = 0
 mass = 2.0
 gravity_scale = 1.66533e-16
 linear_damp = 5.0
-script = ExtResource("1_0e2tw")
+script = ExtResource("1_kiwtm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -44,7 +44,8 @@ shape = SubResource("RectangleShape2D_s1g6n")
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 
-[node name="Ingredient" parent="CarriedItem" instance=ExtResource("2_k30nt")]
+[node name="Ingredient" parent="CarriedItem" instance=ExtResource("2_nkj2j")]
+ingredient_type = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CarriedItem"]
 libraries = {

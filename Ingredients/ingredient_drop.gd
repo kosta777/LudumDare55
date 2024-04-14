@@ -3,8 +3,8 @@ extends Node2D
 
 @export var ingredient_type : Ingredients.Type : set = _set_ingredient
 
-@onready var icon: TextureRect = $icon
-@onready var name_label: Label = $name
+@export var icon: TextureRect
+@export var name_label: Label
 
 
 func _ready() -> void:

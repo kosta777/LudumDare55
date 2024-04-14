@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drpjbbs0boxa1"]
 
-[ext_resource type="Script" path="res://SummoningCircle.gd" id="1_2bpyk"]
+[ext_resource type="Script" path="res://src/SummoningCircle.gd" id="1_2bpyk"]
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/Satan/summon_satan.tres" id="2_oi0a2"]
 [ext_resource type="Texture2D" uid="uid://b1qddaqfurwk0" path="res://sprites/MC_Sample_1.png" id="2_oshkp"]
 [ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="3_ihi3e"]

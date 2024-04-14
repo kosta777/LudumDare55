@@ -18,8 +18,8 @@ func _ready():
 	summoning_circle.setup(self)
 	
 	$Portal1.get_spawn_scene = Spawner.new().spawn_portal1
-	$Portal2.get_spawn_scene = Spawner.new().spawn_portal1
-	$Portal3.get_spawn_scene = Spawner.new().spawn_portal1
+	$Portal2.get_spawn_scene = Spawner.new().spawn_portal2
+	$Portal3.get_spawn_scene = Spawner.new().spawn_portal3
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
