@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctqe760l6nkwk"]
+[gd_scene load_steps=18 format=3 uid="uid://ctqe760l6nkwk"]
 
 [ext_resource type="Script" path="res://src/portal.gd" id="1_jaqdm"]
 [ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal_spawn.png" id="2_7axae"]
@@ -81,6 +81,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_tw0qi"]
+offsets = PackedFloat32Array(0.0891089, 0.705446)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pcv5n"]
+gradient = SubResource("Gradient_tw0qi")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Portal" type="Node2D"]
 script = ExtResource("1_jaqdm")
 
@@ -161,6 +170,11 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_d51uv")
 autoplay = "default"
 frame_progress = 0.251823
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.309804, 1, 0.2, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_pcv5n")
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
