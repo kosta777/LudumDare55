@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
 [ext_resource type="Resource" uid="uid://bbjlrhrt71xf4" path="res://Recipes/Bahamut/summon_bahamut.tres" id="2_4tt3s"]
 [ext_resource type="Texture2D" uid="uid://bggskp8vio3ek" path="res://sprites/catacombs/mainlevbuild.png" id="2_asqun"]
-[ext_resource type="PackedScene" uid="uid://cceiep174wumd" path="res://scenes/raw_material_node.tscn" id="2_cdoks"]
+[ext_resource type="PackedScene" uid="uid://cceiep174wumd" path="res://scenes/raw_material/raw_material_node_soul.tscn" id="2_cdoks"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_43ukl"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/Satan/summon_satan.tres" id="3_hlbl4"]
@@ -1098,7 +1098,7 @@ position = Vector2(417, 102)
 spawn_node = ExtResource("2_cdoks")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
-position = Vector2(302, 289)
+position = Vector2(302, 280)
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
 visible = false

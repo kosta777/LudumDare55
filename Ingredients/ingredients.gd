@@ -21,6 +21,6 @@ const INGREDIENT_ICON := {
 	Type.BLACK_SOUL : preload("res://sprites/Demons/soul.png"),
 	Type.RED_SOUL : preload("res://sprites/Demons/soul.png"),
 	Type.PURPLE_SOUL : preload("res://sprites/Demons/soul.png"),
-	Type.HORNS : preload("res://sprites/Demons/soul.png"),
-	Type.WINGS : preload("res://sprites/Demons/soul.png")
+	Type.HORNS : preload("res://material_texture/horn.tres"),
+	Type.WINGS : preload("res://material_texture/wing.tres")
 }

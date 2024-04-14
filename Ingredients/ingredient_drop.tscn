@@ -3,8 +3,10 @@
 [ext_resource type="Script" path="res://Ingredients/ingredient_drop.gd" id="1_b0hgx"]
 [ext_resource type="Texture2D" uid="uid://ddwbla6ohhcnh" path="res://sprites/Demons/red_demon.png" id="2_xu6so"]
 
-[node name="Ingredient" type="Node2D"]
+[node name="Ingredient" type="Node2D" node_paths=PackedStringArray("icon", "name_label")]
 script = ExtResource("1_b0hgx")
+icon = NodePath("icon")
+name_label = NodePath("name")
 
 [node name="icon" type="TextureRect" parent="."]
 anchors_preset = 8

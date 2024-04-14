@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cceiep174wumd"]
+
+[ext_resource type="Script" path="res://src/raw_material_node.gd" id="1_m6jvl"]
+[ext_resource type="PackedScene" uid="uid://41v1kmyutoyh" path="res://Ingredients/ingredient_drop.tscn" id="2_qkjaa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1g6n"]
+size = Vector2(16.4445, 15.8088)
+
+[sub_resource type="Animation" id="Animation_f1hpk"]
+resource_name = "Float"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ddmj"]
+_data = {
+"Float": SubResource("Animation_f1hpk")
+}
+
+[node name="RawMaterialNode" type="RigidBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 256
+collision_mask = 0
+mass = 2.0
+gravity_scale = 1.66533e-16
+linear_damp = 5.0
+script = ExtResource("1_m6jvl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_s1g6n")
+
+[node name="CarriedItem" type="Node2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+
+[node name="Ingredient" parent="CarriedItem" instance=ExtResource("2_qkjaa")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CarriedItem"]
+libraries = {
+"": SubResource("AnimationLibrary_1ddmj")
+}
+autoplay = "Float"

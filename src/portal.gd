@@ -25,6 +25,7 @@ var portal_loading = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation.speed_scale = stop_scale
+	particle.direction = spawn_direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,11 +51,13 @@ func _spawn_new_node():
 	get_parent().add_child(new_node)
 	new_node.position = position
 	if new_node is RawMaterialNode:
+
 		(new_node as RawMaterialNode).apply_central_impulse(
 			spawn_direction.rotated(PI / 10 * randf_range(-1, 1)) * spawn_force
 		)
 	else:
 		new_node.position = position + spawn_direction * 15
+		new_node.velocity = spawn_direction * 100
 	particle.emitting = true
 
 func _on_player_detection_area_body_entered(body):
