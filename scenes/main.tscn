@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/summon_satan.tres" id="3_hlbl4"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
-[ext_resource type="PackedScene" path="res://scenes/ennemy.tscn" id="7_3i16v"]
+[ext_resource type="PackedScene" uid="uid://cc4wuev2kimcf" path="res://scenes/ennemy.tscn" id="7_3i16v"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
@@ -1080,13 +1080,24 @@ script = ExtResource("3_43ukl")
 movement_bounding_box = NodePath("../MovementBoundingBox")
 
 [node name="Portal" parent="." instance=ExtResource("3_bmjck")]
-position = Vector2(138, 163)
+position = Vector2(71, 140)
+spawn_node = ExtResource("2_cdoks")
+spawn_direction = Vector2(1, 2.08165e-12)
+
+[node name="Portal2" parent="." instance=ExtResource("3_bmjck")]
+position = Vector2(540, 279)
+spawn_node = ExtResource("2_cdoks")
+spawn_direction = Vector2(-1, 2.08165e-12)
+
+[node name="Portal3" parent="." instance=ExtResource("3_bmjck")]
+position = Vector2(417, 102)
 spawn_node = ExtResource("2_cdoks")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 position = Vector2(302, 289)
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
+visible = false
 offset_left = 17.0
 offset_top = 31.0
 offset_right = 593.0
@@ -1098,7 +1109,6 @@ navigation_polygon = SubResource("NavigationPolygon_t7ptk")
 
 [node name="ennemy2" parent="." instance=ExtResource("7_3i16v")]
 position = Vector2(462, 121)
-
 
 [node name="HUD" type="CanvasLayer" parent="."]
 scale = Vector2(1.5, 1.5)

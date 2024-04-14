@@ -47,7 +47,7 @@ func _spawn_new_node():
 	get_parent().add_child(new_node)
 	new_node.position = position
 	(new_node as RawMaterialNode).apply_central_impulse(
-		Vector2.RIGHT.rotated(PI / 10 * randf_range( - 1, 1)) * spawn_force
+		spawn_direction.rotated(PI / 10 * randf_range( - 1, 1)) * spawn_force
 	)
 	particle.emitting = true
 
