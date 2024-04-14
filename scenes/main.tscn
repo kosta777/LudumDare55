@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=11 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Texture2D" uid="uid://bggskp8vio3ek" path="res://sprites/catacombs/mainlevbuild.png" id="2_asqun"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_43ukl"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
+[ext_resource type="PackedScene" uid="uid://cc4wuev2kimcf" path="res://scenes/ennemy.tscn" id="7_3i16v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1039,6 +1040,12 @@ texture = ExtResource("2_asqun")
 [sub_resource type="TileSet" id="TileSet_62d47"]
 sources/0 = SubResource("TileSetAtlasSource_p6ilv")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ivihe"]
+vertices = PackedVector2Array(579, 354, 29, 350, 25, 48, 579, 48)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(15, 39, 590, 38, 589, 365, 20, 360)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1071,9 +1078,14 @@ spawn_node = ExtResource("2_cdoks")
 position = Vector2(302, 289)
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
-visible = false
 offset_left = 17.0
 offset_top = 31.0
 offset_right = 593.0
 offset_bottom = 367.0
 color = Color(1, 1, 1, 0.294118)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ivihe")
+
+[node name="ennemy2" parent="." instance=ExtResource("7_3i16v")]
+position = Vector2(462, 121)

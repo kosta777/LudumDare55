@@ -9,6 +9,8 @@ const FRICTION = 3000
 @onready var carry_slot: Node2D = $CarrySlot
 @onready var pickup_raycast: ShapeCast2D = $Sprite2D/PickUpRaycast
 @onready var player_collision: CollisionShape2D = $player_collision
+@onready var hitbox: HitBox = $Hitbox
+
 var is_carrying = false
 
 @export var attacking = false
@@ -57,13 +59,16 @@ func _physics_process(delta):
 	_set_blend_position(velocity.x)
 
 	move_and_slide()
-
+	
+	if !velocity.is_zero_approx() and !attacking:
+		hitbox.hit_direction = velocity.normalized()
+	
 	#Dont allow player to leave camera rect
 	#var bounding_area = get_viewport_rect()
 	var bounding_area = (get_viewport().get_camera_2d() as CustomCamera).movement_bounding_box
 	global_position = global_position.clamp(Vector2(bounding_area.position.x + player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + player_collision.shape.get_rect().size.y / 2),
 		Vector2(bounding_area.position.x + bounding_area.size.x - player_collision.shape.get_rect().size.x / 2, bounding_area.position.y + bounding_area.size.y - player_collision.shape.get_rect().size.y / 2))
-	#GameManager.player_position = global_position
+	GameManager.player_position = global_position
 
 func _unhandled_input(event):
 	if event is InputEventKey:

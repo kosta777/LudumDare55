@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc4wuev2kimcf"]
+
+[ext_resource type="Script" path="res://src/ennemy.gd" id="1_cr6tv"]
+[ext_resource type="Texture2D" uid="uid://b4htb0dum7jiv" path="res://sprites/skeleton.png" id="1_fxmjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxenp"]
+atlas = ExtResource("1_fxmjg")
+region = Rect2(0, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lil27"]
+atlas = ExtResource("1_fxmjg")
+region = Rect2(34, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwm20"]
+atlas = ExtResource("1_fxmjg")
+region = Rect2(68, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqco7"]
+atlas = ExtResource("1_fxmjg")
+region = Rect2(102, 34, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cny3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxenp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lil27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwm20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqco7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w47xk"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_728pl"]
+
+[node name="ennemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_cr6tv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cny3q")
+autoplay = "default"
+frame_progress = 0.325335
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_w47xk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_728pl")
+debug_color = Color(0.866667, 0.356863, 0, 0.419608)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
