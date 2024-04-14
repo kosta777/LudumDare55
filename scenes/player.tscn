@@ -549,7 +549,7 @@ size = Vector2(21.5, 32.875)
 radius = 7.0
 height = 26.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 y_sort_enabled = true
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -558,8 +558,8 @@ motion_mode = 1
 script = ExtResource("1_hd5h2")
 starting_health = 5
 
-[node name="player_collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+[node name="player_collision" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(-2.08165e-12, 1)
 shape = SubResource("CapsuleShape2D_o467v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

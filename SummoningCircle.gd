@@ -9,6 +9,7 @@ extends Area2D
 
 @export var world_manager: WorldManager
 
+var player_inside = false
 
 var ingredients_received := {}
 var can_summon := false
@@ -20,14 +21,17 @@ func _ready() -> void:
 func setup(_world_manager):
 	world_manager = _world_manager
 
-func _on_body_entered(body: RawMaterialNode) -> void:
-	for child in body.carried_item.get_children():
-		if child is IngredientDrop:
-			print("ingredient is %s" % Ingredients.Type.keys()[child.ingredient_type])
-			ingredients_received[child.ingredient_type] += 1
-			body.queue_free()
-			print(ingredients_received)
-			update_labels()
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_inside = true
+	else:
+		for child in body.carried_item.get_children():
+			if child is IngredientDrop:
+				print("ingredient is %s" % Ingredients.Type.keys()[child.ingredient_type])
+				ingredients_received[child.ingredient_type] += 1
+				body.queue_free()
+				print(ingredients_received)
+				update_labels()
 
 
 func update_labels() -> void:
@@ -42,7 +46,7 @@ func update_labels() -> void:
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("summon"):
+	if Input.is_action_just_pressed("summon") and player_inside:
 		summon_demon()
 
 
@@ -50,13 +54,11 @@ func summon_demon() -> void:
 	if not is_node_ready():
 		await ready
 		
-	if world_manager.get_current_recipes().size() ==0:
-		return
-	
 	var recipes = world_manager.get_current_recipes()
 	#print("here are the %s recipes" %  recipes)
 	#print("here are your ingredients: %s" % ingredients_received)
 	
+	var can_summon_anything = false
 	for recipe in recipes:
 		var can_summon := true
 		recipe.ingredient_list()
@@ -67,6 +69,8 @@ func summon_demon() -> void:
 				print("%s failed" % [recipe.recipe_name])
 				break
 		if can_summon:
+
+			can_summon_anything = true
 			print("%s worked" % [recipe.recipe_name])
 			var demon = recipe.demon_scene.instantiate()
 			add_child(demon)
@@ -75,11 +79,12 @@ func summon_demon() -> void:
 			world_manager.on_recipe_completed(recipe)
 			break
 
+	if recipes.size() > 0 and !can_summon_anything:
+		print('ere')
+		var player = get_parent().find_child("player").take_damage(1)
+
 	reset_ingredients_received()
 	update_labels()
-	
-	
-
 
 func reset_ingredients_received() -> void:
 	ingredients_received = {
@@ -89,3 +94,8 @@ func reset_ingredients_received() -> void:
 		Ingredients.Type.HORNS : 0,
 		Ingredients.Type.WINGS : 0
 	}
+
+
+func _on_body_exited(body:Node2D):
+	if body.is_in_group("player"):
+		player_inside = false

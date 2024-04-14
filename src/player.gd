@@ -16,7 +16,7 @@ var is_carrying = false
 var just_hitted = false
 
 @export var starting_health: int
-var health = 0
+var health:float = 0
 
 func _ready():
 	health = starting_health
@@ -144,6 +144,7 @@ func _player_hit():
 	tween.finished.connect(func(): _invincibility_finished())
 
 	hurtbox.set_deferred("monitoring", false)
+	take_damage(0.5)
 	#set_collision_mask_value(3, false)
 
 func _invincibility_finished():
@@ -153,3 +154,7 @@ func _invincibility_finished():
 
 func take_damage(amount):
 	health -= amount
+
+	var camera = get_parent().find_child("Camera2D")
+
+	camera.apply_shake()

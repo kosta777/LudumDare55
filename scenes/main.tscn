@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=16 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/Satan/summon_satan.tres" id="3_hlbl4"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
+[ext_resource type="Texture2D" uid="uid://yioljbqfadjv" path="res://sprites/heart.png" id="11_kwg30"]
+[ext_resource type="Script" path="res://src/health_label.gd" id="12_huffu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1116,7 +1118,19 @@ transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 [node name="Tasks" type="HBoxContainer" parent="HUD"]
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = -288.0
 offset_bottom = 55.0
 grow_horizontal = 2
+
+[node name="HealthBar" type="TextureRect" parent="HUD" node_paths=PackedStringArray("player")]
+offset_left = 312.0
+offset_top = 0.666667
+offset_right = 394.0
+offset_bottom = 17.6667
+texture = ExtResource("11_kwg30")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("12_huffu")
+player = NodePath("../../player")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

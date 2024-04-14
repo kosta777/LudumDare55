@@ -1,4 +1,4 @@
-extends Label
+extends TextureRect 
 
 @export var player: Player
 
@@ -9,5 +9,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = str(player.health)
-	pass
+	size.x = 16 *player.health
