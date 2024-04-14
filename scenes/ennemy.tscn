@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc4wuev2kimcf"]
+[gd_scene load_steps=12 format=3 uid="uid://cc4wuev2kimcf"]
 
 [ext_resource type="Script" path="res://src/ennemy.gd" id="1_cr6tv"]
 [ext_resource type="Texture2D" uid="uid://b4htb0dum7jiv" path="res://sprites/skeleton.png" id="1_fxmjg"]
+[ext_resource type="Script" path="res://src/Hitbox.gd" id="3_dbkkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxenp"]
 atlas = ExtResource("1_fxmjg")
@@ -45,7 +46,13 @@ height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_728pl"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0ctr"]
+radius = 9.0
+height = 28.0
+
 [node name="ennemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_cr6tv")
 
@@ -59,6 +66,10 @@ position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_w47xk")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 0.1
+avoidance_enabled = true
+radius = 15.0
+time_horizon_obstacles = 1.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -68,5 +79,16 @@ collision_mask = 16
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_728pl")
 debug_color = Color(0.866667, 0.356863, 0, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_dbkkb")
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_r0ctr")
+debug_color = Color(0.976471, 0, 0.423529, 0.419608)
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

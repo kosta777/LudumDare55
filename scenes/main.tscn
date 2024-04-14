@@ -1091,6 +1091,7 @@ navigation_polygon = SubResource("NavigationPolygon_t7ptk")
 [node name="ennemy2" parent="." instance=ExtResource("7_3i16v")]
 position = Vector2(462, 121)
 
+
 [node name="HUD" type="CanvasLayer" parent="."]
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
@@ -1100,3 +1101,9 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 55.0
 grow_horizontal = 2
+
+[node name="ennemy3" parent="." instance=ExtResource("7_3i16v")]
+position = Vector2(429, 133)
+
+[node name="ennemy4" parent="." instance=ExtResource("7_3i16v")]
+position = Vector2(483, 115)
