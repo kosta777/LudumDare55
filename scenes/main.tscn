@@ -1223,6 +1223,7 @@ texture = ExtResource("16_qp5ni")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/GameOverScreen"]
+layout_mode = 0
 offset_left = 132.667
 offset_top = 47.3333
 offset_right = 189.667
@@ -1232,6 +1233,7 @@ text = "Game Over"
 scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="HUD/GameOverScreen"]
+layout_mode = 0
 offset_left = 133.0
 offset_top = 117.0
 offset_right = 201.0
@@ -1263,6 +1265,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/GameOverScreen"]
+layout_mode = 0
 offset_left = 219.333
 offset_top = 115.333
 offset_right = 265.333

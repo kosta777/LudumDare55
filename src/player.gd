@@ -11,19 +11,21 @@ const FRICTION = 3000
 @onready var player_collision: CollisionShape2D = $player_collision
 @onready var hitbox: HitBox = $Hitbox
 @onready var hurtbox: Area2D = $HurtBox
+@onready var animation_tree = $AnimationTree
+
+@export var attacking = false
+@export var starting_health: int
+
+var health:float = 0
+var flipped = false
+var direction_wanted = Vector2.LEFT
 
 var is_carrying = false
 var just_hitted = false
 
-@export var starting_health: int
-var health:float = 0
-
 func _ready():
 	health = starting_health
 
-@export var attacking = false
-var flipped = false
-@onready var animation_tree = $AnimationTree
 func get_direction():
 	var direction_x = Input.get_axis("move-left", "move-right")
 	var direction_y = Input.get_axis("move-up", "move-down")
@@ -31,7 +33,7 @@ func get_direction():
 
 func move_player(delta):
 	var direction = get_direction()
-	
+	direction_wanted = Vector2(direction.x, 0).normalized()
 	if direction == Vector2.ZERO:
 		var amount = velocity.normalized() * FRICTION * delta
 		
@@ -64,7 +66,7 @@ func handle_inputs(delta):
 func _physics_process(delta):
 	handle_inputs(delta)
 
-	_set_blend_position(velocity.x)
+	_set_blend_position(direction_wanted.x)
 
 	move_and_slide()
 	
