@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecipeBase" load_steps=3 format=3 uid="uid://bbjlrhrt71xf4"]
+
+[ext_resource type="Texture2D" uid="uid://08dnk772efpx" path="res://sprites/Demons/purple_demon.png" id="1_7wo4t"]
+[ext_resource type="Script" path="res://Recipes/recipe_base.gd" id="1_dxnpp"]
+
+[resource]
+script = ExtResource("1_dxnpp")
+recipe_name = "Summon Bahamut"
+recipe_time_limit = 120
+demon_texture = ExtResource("1_7wo4t")
+black_souls = 4
+red_souls = 3
+purple_souls = 2
+horns = 1
+wings = 7
