@@ -24,7 +24,7 @@ GameManager="*res://src/game_manager.gd"
 window/size/viewport_width=600
 window/size/viewport_height=400
 window/size/mode=2
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

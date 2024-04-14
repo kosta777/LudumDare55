@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=26 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://duaewcixw35xy" path="res://sprites/Parts/long_button_off.png" id="16_mn7uf"]
 [ext_resource type="Texture2D" uid="uid://vobk2l783jnc" path="res://sprites/Parts/mid_bar.png" id="16_qp5ni"]
 [ext_resource type="Texture2D" uid="uid://btvylgesmedeu" path="res://sprites/Parts/long_button_on.png" id="17_wfpv7"]
+
+[sub_resource type="Gradient" id="Gradient_xkqvx"]
+offsets = PackedFloat32Array(0, 0.507109, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.72549, 0.607843, 0.411765, 1, 1, 1, 1, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1102,6 +1106,26 @@ position = Vector2(214, 122)
 [node name="LightTorch3" parent="LightContainer" instance=ExtResource("5_053wb")]
 z_index = 4
 position = Vector2(145, 260)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="LightContainer"]
+position = Vector2(295, 164)
+amount = 100
+lifetime = 10.0
+explosiveness = 0.06
+randomness = 0.07
+emission_shape = 3
+emission_rect_extents = Vector2(350, 175)
+direction = Vector2(1, -7)
+spread = 60.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_max = 9.0
+scale_amount_max = 2.0
+color = Color(1, 0.309804, 0.309804, 0.403922)
+color_ramp = SubResource("Gradient_xkqvx")
+hue_variation_min = -0.3
+hue_variation_max = 0.7
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
