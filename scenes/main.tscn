@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=24 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/camera.gd" id="3_43ukl"]
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/Satan/summon_satan.tres" id="3_hlbl4"]
+[ext_resource type="PackedScene" uid="uid://bdas0bdlqel6q" path="res://scenes/light_torch.tscn" id="5_053wb"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 [ext_resource type="Texture2D" uid="uid://yioljbqfadjv" path="res://sprites/heart.png" id="11_kwg30"]
@@ -1057,7 +1058,21 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(17, 32, 590, 32, 591, 350, 21, 349), PackedVector2Array(397, 77, 399, 128, 439, 126, 439, 76), PackedVector2Array(513, 250, 513, 309, 567, 310, 562, 249), PackedVector2Array(52, 111, 54, 166, 95, 166, 94, 110)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="Environment" id="Environment_yhjc1"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.93
+glow_levels/2 = 0.87
+glow_blend_mode = 1
+glow_hdr_threshold = 1.89
+glow_hdr_scale = 2.77
+glow_hdr_luminance_cap = 112.42
+glow_map_strength = 0.33
+adjustment_enabled = true
+adjustment_saturation = 1.53
+
 [node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container", "final_score_label", "summoning_circle", "score_label", "game_over_screen")]
+y_sort_enabled = true
 script = ExtResource("1_m21n3")
 tasks_container = NodePath("HUD/Tasks")
 task_scene = ExtResource("7_yfrwv")
@@ -1067,6 +1082,25 @@ summoning_circle = NodePath("SummoningCircle")
 score_label = NodePath("HUD/HBoxContainer/RichTextLabel")
 game_over_screen = NodePath("HUD/GameOverScreen")
 metadata/_edit_horizontal_guides_ = [-191.0]
+
+[node name="LightContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="LightContainer"]
+color = Color(0.811765, 0.847059, 1, 1)
+
+[node name="LightTorch" parent="LightContainer" instance=ExtResource("5_053wb")]
+z_index = 4
+position = Vector2(538, 151)
+energy = 3.0
+
+[node name="LightTorch2" parent="LightContainer" instance=ExtResource("5_053wb")]
+z_index = 4
+position = Vector2(214, 122)
+
+[node name="LightTorch3" parent="LightContainer" instance=ExtResource("5_053wb")]
+z_index = 4
+position = Vector2(145, 260)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0
@@ -1119,6 +1153,7 @@ offset_bottom = 367.0
 color = Color(1, 1, 1, 0.294118)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_wr7w0")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -1281,6 +1316,9 @@ text = "0"
 layout_mode = 2
 texture = ExtResource("13_68i7a")
 expand_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yhjc1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HUD/GameOverScreen/Button" to="." method="_on_button_pressed"]

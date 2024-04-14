@@ -12,6 +12,7 @@ extends Node2D
 @onready var animation = $AnimatedSprite2D
 @onready var particle = $CPUParticles2D
 @onready var player_key_indication = $PlayerKeyIndication
+@onready var light = $PointLight2D
 
 var get_spawn_scene: Callable
 
@@ -23,9 +24,11 @@ var player_in_range = false
 var tween_loading = null
 var portal_loading = false
 var tween_key: Tween
+var original_light_energy: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	original_light_energy = light.energy
 	animation.speed_scale = stop_scale
 	particle.direction = spawn_direction
 
@@ -50,6 +53,7 @@ func _process(delta):
 		animation.speed_scale = run_scale
 	
 func _spawn_new_node():
+	light_animation()
 	var new_node = get_spawn_scene.call().instantiate() as Node2D
 	get_parent().add_child(new_node)
 	new_node.position = position
@@ -62,6 +66,12 @@ func _spawn_new_node():
 		new_node.position = position + spawn_direction * 2
 		new_node.velocity = spawn_direction * 50
 	particle.emitting = true
+	
+func light_animation():
+	var light_tween = get_tree().create_tween()
+	light_tween.tween_property(light, "energy", original_light_energy * 3, .1)
+	light_tween = light_tween.chain()
+	light_tween.tween_property(light, "energy", original_light_energy , .7)
 
 func _on_player_detection_area_body_entered(body):
 	player_in_range = true
