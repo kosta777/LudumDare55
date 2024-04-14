@@ -12,7 +12,7 @@ func random_elem(dict_prob):
 		
 func spawn_portal1():
 	var dict_prob = {
-		preload("res://scenes/ennemy.tscn"): 0,
+		preload("res://scenes/ennemy.tscn"): 1,
 		preload("res://scenes/raw_material/raw_material_node_horn.tscn") : 2,
 	}
 	
@@ -20,7 +20,7 @@ func spawn_portal1():
 	
 func spawn_portal2():
 	var dict_prob = {
-		preload("res://scenes/ennemy.tscn"): 0,
+		preload("res://scenes/ennemy.tscn"): 1,
 		preload("res://scenes/raw_material/raw_material_node_wing.tscn") : 2,
 	}
 	
@@ -29,7 +29,7 @@ func spawn_portal2():
 
 func spawn_portal3():
 	var dict_prob = {
-		preload("res://scenes/ennemy.tscn"): 0,
+		preload("res://scenes/ennemy.tscn"): 1,
 		preload("res://scenes/raw_material/raw_material_node_soul.tscn") : 2,
 	}
 	
