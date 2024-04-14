@@ -11,6 +11,7 @@ extends Node2D
 @onready var timer = $Timer
 @onready var animation = $AnimatedSprite2D
 @onready var particle = $CPUParticles2D
+@onready var player_key_indication = $PlayerKeyIndication
 
 var get_spawn_scene: Callable
 
@@ -21,6 +22,7 @@ var turn_on = false
 var player_in_range = false
 var tween_loading = null
 var portal_loading = false
+var tween_key: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +40,7 @@ func _process(delta):
 	portal_text_label.text = str(portal_loading)
 	
 	if player_in_range and !portal_loading and Input.is_action_just_pressed("interact"):
+		_key_dissapear()
 		Input.action_release("interact")
 		portal_loading = true
 		timer.start(spawn_time)
@@ -56,18 +59,37 @@ func _spawn_new_node():
 			spawn_direction.rotated(PI / 10 * randf_range(-1, 1)) * spawn_force
 		)
 	else:
-		new_node.position = position + spawn_direction * 15
-		new_node.velocity = spawn_direction * 100
+		new_node.position = position + spawn_direction * 2
+		new_node.velocity = spawn_direction * 50
 	particle.emitting = true
 
 func _on_player_detection_area_body_entered(body):
 	player_in_range = true
+	if !portal_loading:
+		_key_appear()
+
+func _key_appear():
+	if tween_key != null and tween_key.is_running():
+		tween_key.stop()
+	tween_key = get_tree().create_tween()
+	tween_key.tween_property(player_key_indication, "modulate", Color(1, 1, 1, 1), .25)
+
+func _key_dissapear():
+	if tween_key != null and tween_key.is_running():
+		tween_key.stop()
+	tween_key = get_tree().create_tween()
+	tween_key.tween_property(player_key_indication, "modulate", Color(1, 1, 1, 0), .25)
+
+	
 
 func _on_player_detection_area_body_exited(body):
 	player_in_range = false
+	_key_dissapear()
 
 func _on_timer_timeout():
 	print("timer is done")
 	portal_loading = false
 	progress_bar.value = 0
 	_spawn_new_node()
+	if player_in_range:
+		_key_appear()
