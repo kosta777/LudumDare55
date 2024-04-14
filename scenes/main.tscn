@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=18 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 [ext_resource type="Texture2D" uid="uid://yioljbqfadjv" path="res://sprites/heart.png" id="11_kwg30"]
 [ext_resource type="Script" path="res://src/health_label.gd" id="12_huffu"]
+[ext_resource type="Texture2D" uid="uid://bilqyg3x43546" path="res://sprites/space_unpressed.png" id="13_q8t8n"]
+[ext_resource type="Texture2D" uid="uid://ctw741e8e8qxw" path="res://sprites/e_unpressed.png" id="14_xlrt3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1132,5 +1134,50 @@ expand_mode = 1
 stretch_mode = 1
 script = ExtResource("12_huffu")
 player = NodePath("../../player")
+
+[node name="Key" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.6667
+offset_top = 316.0
+offset_right = 70.6667
+offset_bottom = 356.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Key"]
+layout_mode = 0
+offset_left = -33.3333
+offset_top = -92.6667
+offset_right = 6.66668
+offset_bottom = -52.6667
+texture = ExtResource("13_q8t8n")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Key"]
+layout_mode = 0
+offset_left = 4.66667
+offset_top = -82.0
+offset_right = 44.6667
+offset_bottom = -42.0
+text = "Attack"
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/Key"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -80.0
+offset_right = 6.00002
+offset_bottom = -40.0
+texture = ExtResource("14_xlrt3")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HUD/Key"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -68.0
+offset_right = 122.0
+offset_bottom = -28.0
+text = "Interact/Pick/Throw"
+scroll_active = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
