@@ -11,7 +11,7 @@ class_name WorldManager extends Node2D
 
 @export var summoning_circle: Node2D
 
-@export var score_label: RichTextLabel
+@export var score_label:Label 
 var score = 0
 
 var pause = false
@@ -58,7 +58,8 @@ func on_recipe_completed(recipe):
 			ui_to_recipes.erase(key)
 			key.queue_free()
 			score += recipe.score
-			score_label.text = str(score)
+			if score_label != null:
+				score_label.text = str(score)
 			break
 
 func get_current_recipes():
