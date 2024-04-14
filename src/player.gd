@@ -15,6 +15,12 @@ const FRICTION = 3000
 var is_carrying = false
 var just_hitted = false
 
+@export var starting_health: int
+var health = 0
+
+func _ready():
+	health = starting_health
+
 @export var attacking = false
 var flipped = false
 @onready var animation_tree = $AnimationTree
@@ -144,3 +150,6 @@ func _invincibility_finished():
 	hurtbox.set_deferred("monitoring", true)
 	set_collision_mask_value(3, true)
 	just_hitted = false
+
+func take_damage(amount):
+	health -= amount

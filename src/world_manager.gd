@@ -23,6 +23,7 @@ func _process(delta):
 	pass
 
 func _on_timer_timeout():
+	print("should add task")
 	add_task()
 	timer.start(time_between_recipes)
 
@@ -30,11 +31,17 @@ func add_task():
 	var new_task = task_scene.instantiate()
 	var randomIndex = randi() % recipes.size()
 	new_task.setup(recipes[randomIndex], tasks_container, self)
-	ui_to_recipes[new_task] = recipes[1]
+	ui_to_recipes[new_task] = recipes[randomIndex]
 
 func on_task_expired(task: Task):
 	ui_to_recipes.erase(task)
 	task.queue_free()
+
+func on_recipe_completed(recipe):
+	for key in ui_to_recipes.keys():
+		if ui_to_recipes[key] == recipe:
+			ui_to_recipes.erase(key)
+			key.queue_free()
 
 func get_current_recipes():
 	return ui_to_recipes.values()

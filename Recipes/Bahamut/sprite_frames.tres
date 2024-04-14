@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://d27j38dfy12rh"]
+
+[ext_resource type="Texture2D" uid="uid://dkrtu54ofr7kp" path="res://sprites/Demons/Basic Demon Animations/fledgling demon/FledglingDemon.png" id="1_0gcwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbb5d"]
+atlas = ExtResource("1_0gcwp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgk45"]
+atlas = ExtResource("1_0gcwp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk5bl"]
+atlas = ExtResource("1_0gcwp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7kg8"]
+atlas = ExtResource("1_0gcwp")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbb5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgk45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk5bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7kg8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

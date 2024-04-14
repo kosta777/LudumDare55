@@ -68,6 +68,13 @@ func summon_demon() -> void:
 				break
 		if can_summon:
 			print("%s worked" % [recipe.recipe_name])
+			var demon = recipe.demon_scene.instantiate()
+			add_child(demon)
+
+			demon.setup(recipe)
+			world_manager.on_recipe_completed(recipe)
+			break
+
 	reset_ingredients_received()
 	update_labels()
 	

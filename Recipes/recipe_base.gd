@@ -5,6 +5,8 @@ extends Resource
 @export var recipe_time_limit : int
 
 @export var demon_texture: Texture2D
+@export var demon_sprite_frames: SpriteFrames
+@export var demon_scene: PackedScene
 
 @export_category("Ingredients amount")
 

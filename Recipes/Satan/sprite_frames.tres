@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://b0lof12jdsu2"]
+
+[ext_resource type="Texture2D" uid="uid://by7yftje4yxv2" path="res://sprites/Demons/Basic Demon Animations/tainted scoundrel/TaintedScoundrel.png" id="1_ah0ka"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umt7j"]
+atlas = ExtResource("1_ah0ka")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p7us"]
+atlas = ExtResource("1_ah0ka")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr13y"]
+atlas = ExtResource("1_ah0ka")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkbo1"]
+atlas = ExtResource("1_ah0ka")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umt7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p7us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr13y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkbo1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
