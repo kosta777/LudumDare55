@@ -6,6 +6,7 @@ extends Area2D
 @onready var ingredient_amount_4: Label = $IngredientAmount4
 @onready var ingredient_amount_5: Label = $IngredientAmount5
 @onready var sprite: TextureRect = $Sprite
+@onready var player_key_indication = $PlayerKeyIndication
 
 @export var world_manager: WorldManager
 
@@ -13,6 +14,7 @@ var player_inside = false
 
 var ingredients_received := {}
 var can_summon := false
+var tween_key: Tween
 
 var type_to_label= {} 
 
@@ -31,6 +33,7 @@ func setup(_world_manager):
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_inside = true
+		_key_appear()
 	else:
 		for child in body.carried_item.get_children():
 			if child is IngredientDrop:
@@ -65,7 +68,7 @@ func update_labels() -> void:
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("summon") and player_inside:
+	if Input.is_action_just_pressed("interact") and player_inside:
 		summon_demon()
 
 
@@ -118,3 +121,21 @@ func reset_ingredients_received() -> void:
 func _on_body_exited(body:Node2D):
 	if body.is_in_group("player"):
 		player_inside = false
+		_key_dissapear()
+
+func _on_summon_action_area_body_entered(body):
+	print("player_in")
+
+
+
+func _key_appear():
+	if tween_key != null and tween_key.is_running():
+		tween_key.stop()
+	tween_key = get_tree().create_tween()
+	tween_key.tween_property(player_key_indication, "modulate", Color(1, 1, 1, 1), .25)
+
+func _key_dissapear():
+	if tween_key != null and tween_key.is_running():
+		tween_key.stop()
+	tween_key = get_tree().create_tween()
+	tween_key.tween_property(player_key_indication, "modulate", Color(1, 1, 1, 0), .25)
