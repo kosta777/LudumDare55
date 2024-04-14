@@ -25,10 +25,12 @@ var tween_loading = null
 var portal_loading = false
 var tween_key: Tween
 var original_light_energy: float
+var original_light_size: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	original_light_energy = light.energy
+	original_light_size = light.texture_scale
 	animation.speed_scale = stop_scale
 	particle.direction = spawn_direction
 
@@ -70,9 +72,10 @@ func _spawn_new_node():
 func light_animation():
 	var light_tween = get_tree().create_tween()
 	light_tween.tween_property(light, "energy", original_light_energy * 3, .1)
+	light_tween.tween_property(light, "texture_scale", original_light_size * 1.2, .1)
 	light_tween = light_tween.chain()
 	light_tween.tween_property(light, "energy", original_light_energy , .7)
-
+	light_tween.tween_property(light, "texture_scale", original_light_size , .3)
 func _on_player_detection_area_body_entered(body):
 	player_in_range = true
 	if !portal_loading:
