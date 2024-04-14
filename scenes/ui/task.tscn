@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://o4vg55tq0k5o"]
+[gd_scene load_steps=8 format=3 uid="uid://o4vg55tq0k5o"]
 
 [ext_resource type="Texture2D" uid="uid://d70dqog6sb11" path="res://sprites/Parts/little_background_frame.png" id="1_ns2gj"]
 [ext_resource type="Script" path="res://src/task.gd" id="1_xk40e"]
 [ext_resource type="Texture2D" uid="uid://d05rdafg3nisn" path="res://sprites/Parts/inventory_frame.png" id="2_ayoqu"]
 [ext_resource type="Texture2D" uid="uid://djfanh3rvlvtl" path="res://sprites/Demons/black_demon.png" id="3_6dlhx"]
 [ext_resource type="PackedScene" uid="uid://d223h166mgv2s" path="res://scenes/ui/ingredient_for_recipe.tscn" id="4_e6gsa"]
+[ext_resource type="Texture2D" uid="uid://dmv1100e4ivi6" path="res://sprites/gold.png" id="6_d6iv8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko452"]
 
-[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container", "timer", "progress_bar")]
+[node name="Task" type="Panel" node_paths=PackedStringArray("demon_icon", "ingredients_container", "timer", "progress_bar", "score_label")]
 custom_minimum_size = Vector2(100, 2.08165e-12)
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,6 +27,7 @@ ingredients_container = NodePath("MarginContainer/MarginContainer/VBoxContainer/
 ingredients_window_scene = ExtResource("4_e6gsa")
 timer = NodePath("Timer")
 progress_bar = NodePath("MarginContainer/MarginContainer/VBoxContainer/TextureProgressBar")
+score_label = NodePath("MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/GoldLabel")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -76,6 +78,16 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_6dlhx")
 expand_mode = 2
+
+[node name="GoldLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "10"
+
+[node name="DemonIcon3" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_d6iv8")
 
 [node name="NeededContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 10)

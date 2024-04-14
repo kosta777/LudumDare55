@@ -12,6 +12,7 @@ recipe_time_limit = 5
 demon_texture = ExtResource("3_v42pg")
 demon_sprite_frames = ExtResource("2_l466o")
 demon_scene = ExtResource("1_7l461")
+score = 10
 black_souls = 1
 red_souls = 0
 purple_souls = 0

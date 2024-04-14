@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drpjbbs0boxa1"]
+[gd_scene load_steps=7 format=3 uid="uid://drpjbbs0boxa1"]
 
 [ext_resource type="Script" path="res://src/SummoningCircle.gd" id="1_2bpyk"]
 [ext_resource type="Texture2D" uid="uid://b1qddaqfurwk0" path="res://sprites/MC_Sample_1.png" id="2_oshkp"]
 [ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="3_ihi3e"]
+[ext_resource type="Texture2D" uid="uid://c6gcjxsewwb1a" path="res://material_texture/horn.tres" id="4_5wxsp"]
+[ext_resource type="Texture2D" uid="uid://dajq7nleuhq3j" path="res://material_texture/wing.tres" id="5_81st7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs4fm"]
 size = Vector2(125, 125)
@@ -32,10 +34,10 @@ texture = ExtResource("2_oshkp")
 stretch_mode = 5
 
 [node name="IngredientAmount1" type="Label" parent="."]
-offset_left = -49.0
-offset_top = -60.0
-offset_right = -30.0
-offset_bottom = -37.0
+offset_left = -9.0
+offset_top = -74.0
+offset_right = 10.0
+offset_bottom = -51.0
 text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -50,10 +52,11 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="IngredientAmount2" type="Label" parent="."]
-offset_left = 30.0
-offset_top = -64.0
-offset_right = 49.0
-offset_bottom = -41.0
+visible = false
+offset_left = -28.0
+offset_top = -119.0
+offset_right = -9.0
+offset_bottom = -96.0
 text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -68,10 +71,11 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="IngredientAmount3" type="Label" parent="."]
-offset_left = 51.0
-offset_top = 11.0
-offset_right = 70.0
-offset_bottom = 34.0
+visible = false
+offset_left = 20.0
+offset_top = -108.0
+offset_right = 39.0
+offset_bottom = -85.0
 text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -86,10 +90,10 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="IngredientAmount4" type="Label" parent="."]
-offset_left = -10.0
-offset_top = 51.0
-offset_right = 9.0
-offset_bottom = 74.0
+offset_left = 56.0
+offset_top = 10.0
+offset_right = 75.0
+offset_bottom = 33.0
 text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -99,7 +103,7 @@ layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
-texture = ExtResource("3_ihi3e")
+texture = ExtResource("4_5wxsp")
 expand_mode = 3
 stretch_mode = 5
 
@@ -117,7 +121,7 @@ layout_mode = 0
 offset_top = -10.0
 offset_right = 16.0
 offset_bottom = 6.0
-texture = ExtResource("3_ihi3e")
+texture = ExtResource("5_81st7")
 expand_mode = 3
 stretch_mode = 5
 

@@ -7,6 +7,7 @@ extends Resource
 @export var demon_texture: Texture2D
 @export var demon_sprite_frames: SpriteFrames
 @export var demon_scene: PackedScene
+@export var score: int
 
 @export_category("Ingredients amount")
 
