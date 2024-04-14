@@ -543,7 +543,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(190.38, 48.6135)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2x8a4"]
-size = Vector2(15, 25.5)
+size = Vector2(21.5, 32.875)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_synuu"]
 radius = 7.0
@@ -615,7 +615,7 @@ script = ExtResource("3_0sjxj")
 damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-14.5, 2)
+position = Vector2(-10.75, 2.5625)
 shape = SubResource("RectangleShape2D_2x8a4")
 disabled = true
 debug_color = Color(1, 0, 0.137255, 0.419608)
