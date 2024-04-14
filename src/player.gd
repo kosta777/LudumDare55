@@ -10,6 +10,7 @@ const FRICTION = 3000
 @onready var pickup_raycast: ShapeCast2D = $Sprite2D/PickUpRaycast
 @onready var player_collision: CollisionShape2D = $player_collision
 @onready var hitbox: HitBox = $Hitbox
+@onready var hurtbox: Area2D = $HurtBox
 
 var is_carrying = false
 var just_hitted = false
@@ -61,8 +62,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if !velocity.is_zero_approx() and !attacking:
-		hitbox.hit_direction = velocity.normalized()
+	if !attacking: 
+		if !velocity.is_zero_approx():
+			hitbox.hit_direction = velocity.normalized()
+		else:
+			hitbox.hit_direction = Vector2.RIGHT if !flipped else Vector2.LEFT
 	
 	#Dont allow player to leave camera rect
 	#var bounding_area = get_viewport_rect()
@@ -121,18 +125,22 @@ func _on_hurt_box_area_entered(area):
 	area = area as HitBox
 	velocity += area.hit_direction * 380
 	just_hitted = true
+	_player_hit()
+	
+func _player_hit():
+	var effect_time = .12
 	var tween = get_tree().create_tween().bind_node(self)
-	tween.set_loops()
-	tween.tween_callback(
-		func(): print("test")
-	)
-	tween.tween_callback(
-		func(): set_visible(false)
-	)
-
+	
+	tween.tween_property(self, "modulate", Color(1,1,1,0), effect_time)
 	tween = tween.chain()
-	tween.tween_callback(
-		func(): set_visible(true)
-	).set_delay(.5)
-	
-	
+	tween.tween_property(self, "modulate", Color(1,1,1,1), effect_time)
+	tween.set_loops(5)
+	tween.finished.connect(func(): _invincibility_finished())
+
+	hurtbox.set_deferred("monitoring", false)
+	set_collision_mask_value(3, false)
+
+func _invincibility_finished():
+	hurtbox.set_deferred("monitoring", true)
+	set_collision_mask_value(3, true)
+	just_hitted = false

@@ -1089,3 +1089,9 @@ navigation_polygon = SubResource("NavigationPolygon_ivihe")
 
 [node name="ennemy2" parent="." instance=ExtResource("7_3i16v")]
 position = Vector2(462, 121)
+
+[node name="ennemy3" parent="." instance=ExtResource("7_3i16v")]
+position = Vector2(429, 133)
+
+[node name="ennemy4" parent="." instance=ExtResource("7_3i16v")]
+position = Vector2(483, 115)
