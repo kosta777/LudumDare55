@@ -16,8 +16,11 @@ func _ready():
 	add_task()
 	timer.start(time_between_recipes)
 	summoning_circle.setup(self)
-	pass # Replace with function body.
-
+	
+	$Portal1.get_spawn_scene = Spawner.new().spawn_portal1
+	$Portal2.get_spawn_scene = Spawner.new().spawn_portal1
+	$Portal3.get_spawn_scene = Spawner.new().spawn_portal1
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

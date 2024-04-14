@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=14 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ctqe760l6nkwk" path="res://scenes/portal.tscn" id="3_bmjck"]
 [ext_resource type="Resource" uid="uid://dauly75xr48l8" path="res://Recipes/summon_satan.tres" id="3_hlbl4"]
 [ext_resource type="PackedScene" uid="uid://drpjbbs0boxa1" path="res://scenes/summoning_circle.tscn" id="5_koa1o"]
-[ext_resource type="PackedScene" uid="uid://cc4wuev2kimcf" path="res://scenes/ennemy.tscn" id="7_3i16v"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
@@ -1044,7 +1043,10 @@ texture = ExtResource("2_asqun")
 [sub_resource type="TileSet" id="TileSet_62d47"]
 sources/0 = SubResource("TileSetAtlasSource_p6ilv")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_t7ptk"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wr7w0"]
+vertices = PackedVector2Array(580, 42, 580, 339, 578, 320, 571, 239, 449, 135, 447, 67, 503, 240, 27, 42, 387, 67, 30, 339, 503, 319, 389, 138)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6), PackedInt32Array(7, 0, 5, 8), PackedInt32Array(2, 1, 9, 10), PackedInt32Array(9, 7, 8, 11), PackedInt32Array(6, 10, 9, 11, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(17, 32, 590, 32, 591, 350, 21, 349), PackedVector2Array(397, 77, 399, 128, 439, 126, 437, 77), PackedVector2Array(513, 250, 513, 309, 567, 310, 562, 249), PackedVector2Array(89, 116, 89, 163, 51, 163, 50, 116)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("tasks_container", "summoning_circle")]
@@ -1079,7 +1081,7 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("3_43ukl")
 movement_bounding_box = NodePath("../MovementBoundingBox")
 
-[node name="Portal" parent="." instance=ExtResource("3_bmjck")]
+[node name="Portal1" parent="." instance=ExtResource("3_bmjck")]
 position = Vector2(71, 140)
 spawn_node = ExtResource("2_cdoks")
 spawn_direction = Vector2(1, 2.08165e-12)
@@ -1105,10 +1107,7 @@ offset_bottom = 367.0
 color = Color(1, 1, 1, 0.294118)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_t7ptk")
-
-[node name="ennemy2" parent="." instance=ExtResource("7_3i16v")]
-position = Vector2(462, 121)
+navigation_polygon = SubResource("NavigationPolygon_wr7w0")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -1119,9 +1118,3 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 55.0
 grow_horizontal = 2
-
-[node name="ennemy3" parent="." instance=ExtResource("7_3i16v")]
-position = Vector2(429, 133)
-
-[node name="ennemy4" parent="." instance=ExtResource("7_3i16v")]
-position = Vector2(483, 115)

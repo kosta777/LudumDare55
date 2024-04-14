@@ -28,12 +28,7 @@ func _physics_process(delta):
 	if !dying:
 		want_to_move_direction = navigate(delta)
 	
-	
 
-	#if friction_amount.length() <= push_velocity.length():
-		#push_velocity -= friction_amount
-	#else:
-		#push_velocity = Vector2.ZERO
 	var friction =  push_velocity.normalized() * FRICTION * delta
 	push_velocity = push_velocity 
 	if friction.length() <= push_velocity.length():
@@ -48,7 +43,6 @@ func _physics_process(delta):
 	animation.flip_h = want_to_move_direction.x < 0
 	hitbox.hit_direction = velocity.normalized()
 
-
 	move_and_slide()
 	
 func _process(delta):
@@ -60,19 +54,20 @@ func _process(delta):
 		collision_layer = 0
 		
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate", Color(1, 1, 1, 0), .5)
+		tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 1.5)
 
 		var tween_scale = get_tree().create_tween()
-		var effect_time = .15
-		tween_scale.tween_property(animation, "scale", Vector2(.5, 1), effect_time)
+		var effect_time = .13
+		tween_scale.tween_property(animation, "scale", Vector2(.7, 1.2), effect_time)
 		tween_scale = tween_scale.chain()
-		tween_scale.tween_property(animation, "scale", Vector2(1, 1), effect_time)
+		tween_scale.tween_property(animation, "scale", Vector2(1.2, .7), effect_time)
 		tween_scale.set_loops()
 		tween.finished.connect(func(): queue_free())
 
 func navigate(delta):
 	
 	var direction = to_local(navigation_agent.get_next_path_position()).normalized()
+
 	navigation_agent.velocity = nav_velocity.move_toward(MAX_SPEED * direction, delta * ACCELERATION)
 	return direction
 	

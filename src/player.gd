@@ -138,7 +138,7 @@ func _player_hit():
 	tween.finished.connect(func(): _invincibility_finished())
 
 	hurtbox.set_deferred("monitoring", false)
-	set_collision_mask_value(3, false)
+	#set_collision_mask_value(3, false)
 
 func _invincibility_finished():
 	hurtbox.set_deferred("monitoring", true)

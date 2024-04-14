@@ -12,6 +12,8 @@ extends Node2D
 @onready var animation = $AnimatedSprite2D
 @onready var particle = $CPUParticles2D
 
+var get_spawn_scene: Callable
+
 const off_modulate: Color = Color("9e9e9e")
 var stop_scale = .7
 var run_scale = 1.5
@@ -19,6 +21,7 @@ var turn_on = false
 var player_in_range = false
 var tween_loading = null
 var portal_loading = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation.speed_scale = stop_scale
@@ -43,12 +46,15 @@ func _process(delta):
 		animation.speed_scale = run_scale
 	
 func _spawn_new_node():
-	var new_node = spawn_node.instantiate() as Node2D
+	var new_node = get_spawn_scene.call().instantiate() as Node2D
 	get_parent().add_child(new_node)
 	new_node.position = position
-	(new_node as RawMaterialNode).apply_central_impulse(
-		spawn_direction.rotated(PI / 10 * randf_range( - 1, 1)) * spawn_force
-	)
+	if new_node is RawMaterialNode:
+		(new_node as RawMaterialNode).apply_central_impulse(
+			spawn_direction.rotated(PI / 10 * randf_range(-1, 1)) * spawn_force
+		)
+	else:
+		new_node.position = position + spawn_direction * 15
 	particle.emitting = true
 
 func _on_player_detection_area_body_entered(body):
