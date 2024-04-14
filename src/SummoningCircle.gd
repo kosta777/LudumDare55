@@ -14,12 +14,19 @@ var player_inside = false
 var ingredients_received := {}
 var can_summon := false
 
+var type_to_label= {} 
+
 func _ready() -> void:
 	reset_ingredients_received()
 	update_labels()
 
 func setup(_world_manager):
 	world_manager = _world_manager
+	type_to_label = {
+		Ingredients.Type.BLACK_SOUL: ingredient_amount_1,
+		Ingredients.Type.HORNS: ingredient_amount_4,
+		Ingredients.Type.WINGS: ingredient_amount_5
+	}
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -27,12 +34,24 @@ func _on_body_entered(body: Node2D) -> void:
 	else:
 		for child in body.carried_item.get_children():
 			if child is IngredientDrop:
-				print("ingredient is %s" % Ingredients.Type.keys()[child.ingredient_type])
 				ingredients_received[child.ingredient_type] += 1
-				body.queue_free()
-				print(ingredients_received)
+				call_deferred("disable_collision", body)
+				var timer = Timer.new()
+				add_child(timer)
+				timer.start(1)
+				timer.timeout.connect(func(): move_absorbed_ingredient(body, child.ingredient_type))
 				update_labels()
 
+func disable_collision(on_what):
+	on_what.find_child("CollisionShape2D").disabled = true
+
+func move_absorbed_ingredient(node_to_move, type):
+	var tween: Tween = create_tween()
+	var tween_duration = 0.5
+	print(type_to_label)
+	tween.set_parallel(true)
+	tween.tween_property(node_to_move, "position", type_to_label[type].global_position, tween_duration)
+	tween.tween_property(node_to_move, "modulate:a", 0, tween_duration)
 
 func update_labels() -> void:
 	ingredient_amount_1.text = str(ingredients_received.values()[0])
