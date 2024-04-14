@@ -1070,6 +1070,7 @@ spawn_node = ExtResource("2_cdoks")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 position = Vector2(302, 289)
+recipes = Array[Resource("res://Recipes/recipe_base.gd")]([])
 
 [node name="MovementBoundingBox" type="ColorRect" parent="."]
 visible = false
@@ -1090,4 +1091,5 @@ offset_bottom = 55.0
 grow_horizontal = 2
 
 [node name="Task" parent="HUD/Tasks" instance=ExtResource("7_yfrwv")]
+unique_name_in_owner = true
 layout_mode = 2
