@@ -73,7 +73,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("interact") and player_inside and !carry:
 		summon_demon()
 	
-	carry = get_parent().get_node("player").is_carrying
+	carry = get_parent().get_node("player").is_carrying if get_parent().get_node("player") != null else false
 
 func animate():
 	var tween: Tween = create_tween()
