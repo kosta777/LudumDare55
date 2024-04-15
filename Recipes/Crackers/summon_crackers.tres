@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("4_irpqs")
 recipe_name = "Summon Crackers"
-recipe_time_limit = 10
+recipe_time_limit = 15
 demon_texture = ExtResource("3_kvmpq")
 demon_sprite_frames = ExtResource("2_us8fi")
 demon_scene = ExtResource("1_c3vwt")

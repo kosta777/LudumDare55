@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_tdh21")
 recipe_name = "Summon Bahamut"
-recipe_time_limit = 25
+recipe_time_limit = 30
 demon_texture = ExtResource("3_431kp")
 demon_sprite_frames = ExtResource("2_pfe22")
 demon_scene = ExtResource("1_rv1ol")
@@ -17,4 +17,4 @@ black_souls = 1
 red_souls = 0
 purple_souls = 0
 horns = 1
-wings = 2
+wings = 1
