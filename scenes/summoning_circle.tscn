@@ -71,7 +71,6 @@ texture = ExtResource("5_f4in3")
 [node name="PointLight2D" type="PointLight2D" parent="SpriteContainer"]
 color = Color(1, 0.239216, 0.239216, 1)
 energy = 0.0
-shadow_enabled = true
 texture = ExtResource("6_6aj8t")
 
 [node name="IngredientAmount1" type="Label" parent="."]
