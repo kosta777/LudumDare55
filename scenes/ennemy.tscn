@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc4wuev2kimcf"]
+[gd_scene load_steps=13 format=3 uid="uid://cc4wuev2kimcf"]
 
 [ext_resource type="Script" path="res://src/ennemy.gd" id="1_cr6tv"]
 [ext_resource type="Texture2D" uid="uid://b4htb0dum7jiv" path="res://sprites/skeleton.png" id="1_fxmjg"]
@@ -50,6 +50,9 @@ height = 26.0
 radius = 8.0
 height = 28.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lgcs4"]
+polygon = PackedVector2Array(-8, 15, -2, 15, 4, 15, 5, 17, 4, 19, 0, 19, -8, 19, -9, 17)
+
 [node name="ennemy" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 4
@@ -92,5 +95,9 @@ damage = 1.0
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_r0ctr")
 debug_color = Color(0.976471, 0, 0.423529, 0.419608)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(1, 0)
+occluder = SubResource("OccluderPolygon2D_lgcs4")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

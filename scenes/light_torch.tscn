@@ -95,7 +95,7 @@ fill_from = Vector2(0.5, 0.5)
 position = Vector2(30, 59)
 script = ExtResource("1_x42e5")
 texture_light = SubResource("GradientTexture2D_6cniw")
-size = 0.28
+size = 0.3
 energy = 2.0
 color = Color(0.764706, 0.423529, 0.137255, 1)
 
@@ -107,16 +107,9 @@ animation = &"fire"
 autoplay = "fire"
 frame_progress = 0.740361
 
-[node name="LightNoShadow" type="PointLight2D" parent="."]
-color = Color(0.764706, 0.423529, 0.0980392, 1)
-energy = 3.56
-texture = SubResource("GradientTexture2D_ohpt4")
-texture_scale = 0.09
-
 [node name="LightShadow" type="PointLight2D" parent="."]
 color = Color(0.764706, 0.423529, 0.0980392, 1)
 energy = 5.61
-range_item_cull_mask = 514
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ohpt4")
 texture_scale = 0.24

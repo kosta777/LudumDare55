@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bufk3ih8hx2xp"]
+[gd_scene load_steps=53 format=3 uid="uid://bufk3ih8hx2xp"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_hd5h2"]
 [ext_resource type="Texture2D" uid="uid://b2kjgon06sqq5" path="res://sprites/character.png" id="2_wyrgv"]
@@ -549,6 +549,9 @@ size = Vector2(21.5, 32.875)
 radius = 7.0
 height = 26.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rx8l7"]
+polygon = PackedVector2Array(-7, 13, -3, 13, -2.08165e-12, 13, 4, 13, 7, 13, 8, 15, 7, 17, -7, 17, -8, 15)
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 y_sort_enabled = true
@@ -628,5 +631,8 @@ collision_mask = 32
 position = Vector2(-2.08165e-12, 1)
 shape = SubResource("CapsuleShape2D_synuu")
 debug_color = Color(0.992157, 0.0941176, 0, 0.419608)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_rx8l7")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

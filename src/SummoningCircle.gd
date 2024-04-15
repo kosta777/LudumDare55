@@ -5,7 +5,8 @@ extends Area2D
 @onready var ingredient_amount_3: Label = $IngredientAmount3
 @onready var ingredient_amount_4: Label = $IngredientAmount4
 @onready var ingredient_amount_5: Label = $IngredientAmount5
-@onready var sprite: TextureRect = $Sprite
+@onready var sprite: Sprite2D = $SpriteContainer/Sprite
+@onready var light: PointLight2D = $SpriteContainer/PointLight2D
 @onready var player_key_indication = $PlayerKeyIndication
 
 @export var world_manager: WorldManager
@@ -15,12 +16,13 @@ var player_inside = false
 var ingredients_received := {}
 var can_summon := false
 var tween_key: Tween
-
+var original_light_energy: float
 var type_to_label= {} 
 
 func _ready() -> void:
 	reset_ingredients_received()
 	update_labels()
+	original_light_energy = light.energy
 
 func setup(_world_manager):
 	world_manager = _world_manager
@@ -63,9 +65,6 @@ func update_labels() -> void:
 	ingredient_amount_4.text = str(ingredients_received.values()[3])
 	ingredient_amount_5.text = str(ingredients_received.values()[4])
 
-	var tween: Tween = create_tween()
-	tween.tween_property(sprite, "modulate:v", 1, 0.25).from(15)
-
 
 var carry = false
 func _process(delta):
@@ -76,10 +75,16 @@ func _process(delta):
 	
 	carry = get_parent().get_node("player").is_carrying
 
+func animate():
+	var tween: Tween = create_tween()
+	tween.tween_property(light, "energy", 8, .1)
+	tween.chain().tween_property(light, "energy", original_light_energy, .4)
+	print("called")
+
 func summon_demon() -> void:
 	if not is_node_ready():
 		await ready
-		
+	animate()
 	var recipes = world_manager.get_current_recipes()
 	#print("here are the %s recipes" %  recipes)
 	#print("here are your ingredients: %s" % ingredients_received)
