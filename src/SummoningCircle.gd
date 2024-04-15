@@ -110,12 +110,20 @@ func summon_demon() -> void:
 			world_manager.on_recipe_completed(recipe)
 			break
 
-	if recipes.size() > 0 and !can_summon_anything:
+	if recipes.size() > 0 and !can_summon_anything && has_any_ingredients():
 		print('ere')
 		var player = get_parent().find_child("player").take_damage(1)
 
 	reset_ingredients_received()
 	update_labels()
+
+func has_any_ingredients() -> bool:
+	var sum = 0
+
+	for stuff in ingredients_received.values():
+		sum += stuff
+
+	return sum > 0
 
 func reset_ingredients_received() -> void:
 	ingredients_received = {
