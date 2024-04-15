@@ -4,6 +4,7 @@ extends Node2D
 @export var spawn_node: PackedScene
 @export var spawn_direction: Vector2 = Vector2.LEFT
 @export var spawn_force: float = 250
+@export var icon_texture: Texture
 
 @onready var portal_text_label = $StateLabel
 @onready var portal_detection_area = $PlayerDetectionArea
@@ -29,6 +30,7 @@ var original_light_size: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Panel/ItemLogo.texture = icon_texture
 	original_light_energy = light.energy
 	original_light_size = light.texture_scale
 	animation.speed_scale = stop_scale

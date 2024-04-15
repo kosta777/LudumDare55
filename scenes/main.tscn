@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=29 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -13,8 +13,11 @@
 [ext_resource type="Resource" uid="uid://meoqcrlyk6ii" path="res://Recipes/Crackers/summon_crackers.tres" id="5_xg7qu"]
 [ext_resource type="PackedScene" uid="uid://o4vg55tq0k5o" path="res://scenes/ui/task.tscn" id="7_yfrwv"]
 [ext_resource type="Texture2D" uid="uid://yioljbqfadjv" path="res://sprites/heart.png" id="11_kwg30"]
+[ext_resource type="Texture2D" uid="uid://c6gcjxsewwb1a" path="res://material_texture/horn.tres" id="12_3d44y"]
 [ext_resource type="Script" path="res://src/health_label.gd" id="12_huffu"]
+[ext_resource type="Texture2D" uid="uid://dajq7nleuhq3j" path="res://material_texture/wing.tres" id="12_uf14d"]
 [ext_resource type="Texture2D" uid="uid://dmv1100e4ivi6" path="res://sprites/gold.png" id="13_68i7a"]
+[ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="13_fumur"]
 [ext_resource type="Texture2D" uid="uid://bilqyg3x43546" path="res://sprites/space_unpressed.png" id="13_q8t8n"]
 [ext_resource type="Texture2D" uid="uid://ctw741e8e8qxw" path="res://sprites/e_unpressed.png" id="14_xlrt3"]
 [ext_resource type="Texture2D" uid="uid://duaewcixw35xy" path="res://sprites/Parts/long_button_off.png" id="16_mn7uf"]
@@ -1158,17 +1161,20 @@ z_index = 6
 position = Vector2(71, 140)
 spawn_node = ExtResource("2_cdoks")
 spawn_direction = Vector2(1, 2.08165e-12)
+icon_texture = ExtResource("12_3d44y")
 
 [node name="Portal2" parent="." instance=ExtResource("3_bmjck")]
 z_index = 6
 position = Vector2(540, 279)
 spawn_node = ExtResource("2_cdoks")
 spawn_direction = Vector2(-1, 2.08165e-12)
+icon_texture = ExtResource("12_uf14d")
 
 [node name="Portal3" parent="." instance=ExtResource("3_bmjck")]
 z_index = 6
 position = Vector2(417, 102)
 spawn_node = ExtResource("2_cdoks")
+icon_texture = ExtResource("13_fumur")
 
 [node name="SummoningCircle" parent="." instance=ExtResource("5_koa1o")]
 position = Vector2(302, 280)
