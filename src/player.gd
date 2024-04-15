@@ -147,7 +147,7 @@ func _player_hit():
 
 	hurtbox.set_deferred("monitoring", false)
 	take_damage(0.5)
-	#set_collision_mask_value(3, false)
+	set_collision_mask_value(3, false)
 
 func _invincibility_finished():
 	hurtbox.set_deferred("monitoring", true)
