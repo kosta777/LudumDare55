@@ -12,6 +12,7 @@ extends Node2D
 @onready var animation = $AnimatedSprite2D
 @onready var particle = $CPUParticles2D
 @onready var player_key_indication = $PlayerKeyIndication
+@onready var sfx: AudioStreamPlayer2D = $Sfx
 
 var get_spawn_scene: Callable
 
@@ -48,6 +49,7 @@ func _process(delta):
 		tween_loading = get_tree().create_tween()
 		tween_loading.tween_property(progress_bar, "value", 100, spawn_time)
 		animation.speed_scale = run_scale
+		sfx.play()
 	
 func _spawn_new_node():
 	var new_node = get_spawn_scene.call().instantiate() as Node2D
@@ -87,6 +89,8 @@ func _on_player_detection_area_body_exited(body):
 	_key_dissapear()
 
 func _on_timer_timeout():
+	if sfx.playing:
+		sfx.stop()
 	print("timer is done")
 	portal_loading = false
 	progress_bar.value = 0

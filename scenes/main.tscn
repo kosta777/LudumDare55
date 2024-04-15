@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fh2wxb5uepwr"]
+[gd_scene load_steps=23 format=3 uid="uid://fh2wxb5uepwr"]
 
 [ext_resource type="PackedScene" uid="uid://bufk3ih8hx2xp" path="res://scenes/player.tscn" id="1_3bq77"]
 [ext_resource type="Script" path="res://src/world_manager.gd" id="1_m21n3"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://duaewcixw35xy" path="res://sprites/Parts/long_button_off.png" id="16_mn7uf"]
 [ext_resource type="Texture2D" uid="uid://vobk2l783jnc" path="res://sprites/Parts/mid_bar.png" id="16_qp5ni"]
 [ext_resource type="Texture2D" uid="uid://btvylgesmedeu" path="res://sprites/Parts/long_button_on.png" id="17_wfpv7"]
+[ext_resource type="AudioStream" uid="uid://buqd48d1bqeko" path="res://sounds/rpg_ambience_-_dungeon.ogg" id="19_l5rn3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6ilv"]
 texture = ExtResource("2_asqun")
@@ -1281,6 +1282,11 @@ text = "0"
 layout_mode = 2
 texture = ExtResource("13_68i7a")
 expand_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_l5rn3")
+autoplay = true
+attenuation = 0.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HUD/GameOverScreen/Button" to="." method="_on_button_pressed"]
