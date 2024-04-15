@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://ctqe760l6nkwk"]
+[gd_scene load_steps=22 format=3 uid="uid://ctqe760l6nkwk"]
 
 [ext_resource type="Script" path="res://src/portal.gd" id="1_jaqdm"]
 [ext_resource type="Texture2D" uid="uid://y6vrtvk3p8o3" path="res://sprites/portal_spawn.png" id="2_7axae"]
 [ext_resource type="Texture2D" uid="uid://cqcg2a85bq3hg" path="res://sprites/e_pressed.png" id="3_tnowr"]
 [ext_resource type="Texture2D" uid="uid://ctw741e8e8qxw" path="res://sprites/e_unpressed.png" id="4_rcyb0"]
+[ext_resource type="AudioStream" uid="uid://b2ecbihikkrqc" path="res://sounds/portal_wobble.mp3" id="5_b6vh2"]
 [ext_resource type="Texture2D" uid="uid://c6gcjxsewwb1a" path="res://material_texture/horn.tres" id="5_g2b4c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl5w6"]
@@ -211,6 +212,10 @@ offset_bottom = 17.3415
 scale = Vector2(0.717924, 0.717924)
 texture = ExtResource("5_g2b4c")
 expand_mode = 1
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_b6vh2")
+bus = &"SFX"
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://drpjbbs0boxa1"]
+[gd_scene load_steps=14 format=3 uid="uid://drpjbbs0boxa1"]
 
 [ext_resource type="Script" path="res://src/SummoningCircle.gd" id="1_2bpyk"]
 [ext_resource type="Texture2D" uid="uid://cqcg2a85bq3hg" path="res://sprites/e_pressed.png" id="2_2pjwt"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dajq7nleuhq3j" path="res://material_texture/wing.tres" id="5_81st7"]
 [ext_resource type="Texture2D" uid="uid://bbf60clkyw1fw" path="res://Ingredients/MC_Sample_1.png" id="5_f4in3"]
 [ext_resource type="Texture2D" uid="uid://ciwsiomqhrybv" path="res://sprites/light_mc.png" id="6_6aj8t"]
+[ext_resource type="AudioStream" uid="uid://dut6wu4tnpobc" path="res://sounds/foom_0.wav" id="8_4jvgw"]
+[ext_resource type="AudioStream" uid="uid://22w74gj4uld" path="res://sounds/magic_words.wav" id="9_hjuu4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_auhyi"]
 animations = [{
@@ -164,6 +166,14 @@ offset_bottom = 6.0
 texture = ExtResource("5_81st7")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="SFXAbsorbIngredient" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4jvgw")
+bus = &"SFX"
+
+[node name="SFXSummoning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_hjuu4")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -8,11 +8,15 @@ extends Area2D
 @onready var sprite: Sprite2D = $SpriteContainer/Sprite
 @onready var light: PointLight2D = $SpriteContainer/PointLight2D
 @onready var player_key_indication = $PlayerKeyIndication
+@onready var sfx_absorb_ingredient: AudioStreamPlayer2D = $SFXAbsorbIngredient
+@onready var sfx_summoning: AudioStreamPlayer2D = $SFXSummoning
+
 
 @export var world_manager: WorldManager
 
 var player_inside = false
 
+var moving_ingredient := false
 var ingredients_received := {}
 var can_summon := false
 var tween_key: Tween
@@ -41,22 +45,28 @@ func _on_body_entered(body: Node2D) -> void:
 			if child is IngredientDrop:
 				ingredients_received[child.ingredient_type] += 1
 				call_deferred("disable_collision", body)
-				var timer = Timer.new()
-				add_child(timer)
-				timer.start(1)
-				timer.timeout.connect(func(): move_absorbed_ingredient(body, child.ingredient_type))
+				get_tree().create_timer(1).timeout.connect(
+					func():move_absorbed_ingredient(body, child.ingredient_type)
+				)
 				update_labels()
 
 func disable_collision(on_what):
 	on_what.find_child("CollisionShape2D").disabled = true
 
 func move_absorbed_ingredient(node_to_move, type):
+
+	sfx_absorb_ingredient.play()
 	var tween: Tween = create_tween()
 	var tween_duration = 0.5
 	print(type_to_label)
 	tween.set_parallel(true)
 	tween.tween_property(node_to_move, "position", type_to_label[type].global_position, tween_duration)
 	tween.tween_property(node_to_move, "modulate:a", 0, tween_duration)
+	await tween.finished
+	print("finished tween")
+	sfx_absorb_ingredient.stop()
+	node_to_move.queue_free()
+
 
 func update_labels() -> void:
 	ingredient_amount_1.text = str(ingredients_received.values()[0])
@@ -108,6 +118,7 @@ func summon_demon() -> void:
 
 			demon.setup(recipe)
 			world_manager.on_recipe_completed(recipe)
+			sfx_summoning.play()
 			break
 
 	if recipes.size() > 0 and !can_summon_anything && has_any_ingredients():
