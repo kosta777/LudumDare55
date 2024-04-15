@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-const MAX_SPEED = 170.0
-const ACCELERATION = 2000
-const FRICTION = 3000
+const MAX_SPEED = 150.0
+const ACCELERATION = 4000
+const FRICTION = 1500
 
 #Carry stuff
 @onready var carry_slot: Node2D = $CarrySlot
