@@ -1092,12 +1092,13 @@ metadata/_edit_horizontal_guides_ = [-191.0]
 y_sort_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="LightContainer"]
-color = Color(0.811765, 0.847059, 1, 1)
+color = Color(0.568627, 0.584314, 0.658824, 1)
 
 [node name="LightTorch" parent="LightContainer" instance=ExtResource("5_053wb")]
 z_index = 4
 position = Vector2(538, 151)
-energy = 3.0
+size = 0.45
+energy = 2.3
 
 [node name="LightTorch2" parent="LightContainer" instance=ExtResource("5_053wb")]
 z_index = 4
@@ -1109,7 +1110,7 @@ position = Vector2(145, 260)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="LightContainer"]
 position = Vector2(295, 164)
-amount = 100
+amount = 170
 lifetime = 10.0
 explosiveness = 0.06
 randomness = 0.07

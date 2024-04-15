@@ -7,7 +7,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var lights = [$LightNoShadow, $LightShadow]
+	var lights = [$LightShadow]
 	for l in lights:
 		l.texture = texture_light
 		l.energy = energy
@@ -27,7 +27,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var lights = [$LightNoShadow, $LightShadow]
+	var lights = [$LightShadow]
 	for l in lights:
 		l.texture = texture_light
 		l.energy = energy

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drpjbbs0boxa1"]
+[gd_scene load_steps=12 format=3 uid="uid://drpjbbs0boxa1"]
 
 [ext_resource type="Script" path="res://src/SummoningCircle.gd" id="1_2bpyk"]
 [ext_resource type="Texture2D" uid="uid://cqcg2a85bq3hg" path="res://sprites/e_pressed.png" id="2_2pjwt"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dur5y3afox6ry" path="res://sprites/Demons/soul.png" id="3_ihi3e"]
 [ext_resource type="Texture2D" uid="uid://c6gcjxsewwb1a" path="res://material_texture/horn.tres" id="4_5wxsp"]
 [ext_resource type="Texture2D" uid="uid://dajq7nleuhq3j" path="res://material_texture/wing.tres" id="5_81st7"]
+[ext_resource type="Texture2D" uid="uid://bbf60clkyw1fw" path="res://Ingredients/MC_Sample_1.png" id="5_f4in3"]
+[ext_resource type="Texture2D" uid="uid://ciwsiomqhrybv" path="res://sprites/light_mc.png" id="6_6aj8t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_auhyi"]
 animations = [{
@@ -44,7 +46,7 @@ position = Vector2(-0.5, -0.5)
 scale = Vector2(6.67657, -6.67774)
 shape = SubResource("CircleShape2D_seokq")
 
-[node name="Sprite" type="TextureRect" parent="."]
+[node name="Spriteback" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,6 +60,19 @@ rotation = 3.14159
 scale = Vector2(0.646054, 0.646054)
 texture = ExtResource("2_oshkp")
 stretch_mode = 5
+
+[node name="SpriteContainer" type="Node2D" parent="."]
+rotation = 0.6353
+scale = Vector2(0.66, 0.66)
+
+[node name="Sprite" type="Sprite2D" parent="SpriteContainer"]
+texture = ExtResource("5_f4in3")
+
+[node name="PointLight2D" type="PointLight2D" parent="SpriteContainer"]
+color = Color(1, 0.239216, 0.239216, 1)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("6_6aj8t")
 
 [node name="IngredientAmount1" type="Label" parent="."]
 offset_left = -9.0
